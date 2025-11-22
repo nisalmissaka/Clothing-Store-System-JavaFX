@@ -4,9 +4,13 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -70,8 +74,12 @@ public class DashbordformController {
 
     }
 
+    Stage placeOrderStage = new Stage();
     @FXML
-    void btnPOSOnAction(ActionEvent event) {
+    void btnPOSOnAction(ActionEvent event) throws IOException {
+        placeOrderStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/View/PlaceOrder.fxml"))));
+        placeOrderStage.show();
+
 
     }
 
