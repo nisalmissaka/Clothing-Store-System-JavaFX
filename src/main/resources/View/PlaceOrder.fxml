@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="660.0" prefWidth="951.0" style="-fx-background-color: F7F7F7;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlaceOrderFormController">
+    <children>
+
+
+        <Label layoutX="245.0" layoutY="26.0" text="Place Order" textFill="#bf6c6c">
+            <font>
+                <Font name="System Bold Italic" size="61.0" />
+            </font>
+        </Label>
+
+
+        <TableView layoutX="14.0" layoutY="155.0" prefHeight="298.0" prefWidth="642.0">
+            <columns>
+                <TableColumn fx:id="colItemCode" prefWidth="75.0" text="ItemCode" />
+                <TableColumn fx:id="colDescription" prefWidth="113.0" text="Description" />
+                <TableColumn fx:id="colQuantity" prefWidth="113.0" text="Quantity" />
+                <TableColumn fx:id="ColUnitPrice" prefWidth="113.0" text="Unit Price" />
+                <TableColumn fx:id="colDiscount" prefWidth="113.0" text="Discount" />
+                <TableColumn fx:id="colTotal" prefWidth="113.0" text="Total" />
+            </columns>
+        </TableView>
+
+
+        <Label layoutX="723.0" layoutY="110.0" text="Order Detail" textFill="#33250c">
+            <font>
+                <Font name="System Italic" size="23.0" />
+            </font>
+        </Label>
+
+
+        <Line endX="100.0" layoutX="785.0" layoutY="155.0" startX="-100.0" />
+
+
+        <Label layoutX="672.0" layoutY="214.0" text="Customer ID" />
+        <Label fx:id="txtCustomerID" alignment="CENTER" layoutX="803.0" layoutY="214.0" text="CID" />
+
+
+        <Label layoutX="672.0" layoutY="268.0" text="Customer Name" />
+        <Label fx:id="lblCustomerName" alignment="CENTER" layoutX="803.0" layoutY="268.0" text="Name" />
+
+
+        <Line endX="159.0" layoutX="773.0" layoutY="314.0" startX="-100.0" />
+
+
+        <Label layoutX="672.0" layoutY="327.0" text="Item Code" />
+        <Label fx:id="lblItemCode" alignment="CENTER" layoutX="803.0" layoutY="327.0" text="Code" />
+        <Line endX="159.0" layoutX="774.0" layoutY="342.0" startX="-32.0" />
+
+
+        <Label layoutX="672.0" layoutY="363.0" text="Description" />
+        <Label fx:id="lblDescription" alignment="CENTER" layoutX="803.0" layoutY="363.0" prefHeight="18.0" prefWidth="66.0" text="Description" />
+
+
+        <Label layoutX="676.0" layoutY="401.0" text="Unit Price" />
+        <Label fx:id="lblprice" alignment="CENTER" layoutX="803.0" layoutY="401.0" prefHeight="18.0" prefWidth="66.0" text="price" />
+
+
+        <Label layoutX="676.0" layoutY="435.0" text="Discount" />
+        <Label fx:id="lbldiscount" alignment="CENTER" layoutX="803.0" layoutY="435.0" prefHeight="18.0" prefWidth="66.0" text="discount" />
+
+
+        <Label layoutX="672.0" layoutY="472.0" text="Quantity" />
+        <Label fx:id="lblQty" alignment="CENTER" layoutX="803.0" layoutY="472.0" prefHeight="18.0" prefWidth="66.0" text="0" />
+
+        <Line endX="159.0" layoutX="782.0" layoutY="485.0" startX="-32.0" />
+
+
+        <Button layoutX="759.0" layoutY="504.0" mnemonicParsing="false" onAction="#btnAddToCartOnAction" prefHeight="34.0" prefWidth="94.0" style="-fx-background-color: #59AC77;" text="Add To Cart" textFill="#fff">
+            <font>
+                <Font name="System Bold Italic" size="12.0" />
+            </font>
+        </Button>
+
+
+        <Label layoutX="637.0" layoutY="552.0" text="NET TOTAL" textFill="#4813d9">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="lblNetTotal" layoutX="735.0" layoutY="552.0" text="00" textFill="#4813d9">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+
+
+        <Button layoutX="806.0" layoutY="589.0" mnemonicParsing="false" onAction="#btnPlaceOrderOnAcrion" prefHeight="34.0" prefWidth="94.0" style="-fx-background-color: #F75270;" text="Place Order" textFill="#fff">
+            <font>
+                <Font name="System Bold Italic" size="12.0" />
+            </font>
+        </Button>
+
+    </children>
+</AnchorPane>
