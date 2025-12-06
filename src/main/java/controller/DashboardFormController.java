@@ -9,12 +9,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.security.cert.PolicyNode;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -82,9 +80,10 @@ public class DashboardFormController {
     @FXML
     void btnOnActionCustomers(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/View/customer_form.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.centerOnScreen();
+        stage.setTitle("Customers");
+        stage.show();
 
 
     }
@@ -92,24 +91,33 @@ public class DashboardFormController {
     @FXML
     void btnOnActionItemManage(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/View/item_form.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.centerOnScreen();
+        stage.setTitle("ItemManage");
+        stage.show();
 
 
     }
 
     @FXML
-    void btnOnActionOrders(ActionEvent event) {
+    void btnOnActionOrders(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/View/order_form.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Orders");
+        stage.show();
+
 
     }
 
     @FXML
     void btnOnActionPOS(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/PlaceOrder.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/View/place_order_form.fxml"));
+        Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.centerOnScreen();
+        stage.setTitle("POS");
+        stage.show();
+
 
 
 
@@ -121,7 +129,12 @@ public class DashboardFormController {
     }
 
     @FXML
-    void btnOnActionSupplyers(ActionEvent event) {
+    void btnOnActionSupplyers(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/View/supplyers_form.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Supplyers");
+        stage.show();
 
     }
 

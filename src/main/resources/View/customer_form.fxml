@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="760.0" prefWidth="909.0" style="-fx-background-color: E9B3FB;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerFormController">
+   <children>
+      <AnchorPane layoutX="2.0" prefHeight="70.0" prefWidth="907.0" style="-fx-background-color: #1055C9;">
+         <children>
+            <Label layoutX="313.0" layoutY="9.0" text="Customer Manage" textFill="#fff7f7">
+               <font>
+                  <Font name="System Bold Italic" size="37.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="68.0" layoutY="147.0" text="Customer ID">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="465.0" layoutY="155.0" text="Customer Name">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="232.0" text="Address">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="455.0" layoutY="241.0" text="City">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="320.0" text="Salary">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCustomerID" layoutX="226.0" layoutY="160.0" />
+      <TextField fx:id="txtAddress" layoutX="208.0" layoutY="237.0" />
+      <TextField fx:id="txtSalary" layoutX="201.0" layoutY="325.0" />
+      <TextField fx:id="txtCustomerName" layoutX="651.0" layoutY="164.0" prefHeight="26.0" prefWidth="173.0" />
+      <TextField fx:id="txtCity" layoutX="540.0" layoutY="250.0" />
+      <Button layoutX="795.0" layoutY="382.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="45.0" prefWidth="100.0" style="-fx-background-color: #399918;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </Button>
+      <Button layoutX="450.0" layoutY="382.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="46.0" prefWidth="100.0" style="-fx-background-color: #4A249D;" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="21.0" />
+         </font>
+      </Button>
+      <Button layoutX="676.0" layoutY="382.0" mnemonicParsing="false" onAction="#btnUpDateOnAction" prefHeight="46.0" prefWidth="100.0" style="-fx-background-color: #D10363;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="565.0" layoutY="382.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="46.0" prefWidth="100.0" style="-fx-background-color: #7E2553;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="21.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tblCustomer" layoutY="446.0" prefHeight="244.0" prefWidth="907.0">
+        <columns>
+          <TableColumn fx:id="colCustomerID" prefWidth="125.60003817081451" style="background-color: #1055C9;" text="Customer ID" />
+          <TableColumn fx:id="colCustomerName" prefWidth="180.79998016357422" text="Customer Name" />
+            <TableColumn fx:id="colAddress" prefWidth="237.60012817382812" text="Address" />
+            <TableColumn fx:id="colCity" prefWidth="187.199951171875" text="City" />
+            <TableColumn fx:id="colSalary" prefWidth="172.0" text="Salary" />
+        </columns>
+      </TableView>
+      <Button layoutX="795.0" layoutY="706.0" mnemonicParsing="false" onAction="#btnReloadOnAction" prefHeight="45.0" prefWidth="100.0" style="-fx-background-color: #FF5B22;" text="Reload" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

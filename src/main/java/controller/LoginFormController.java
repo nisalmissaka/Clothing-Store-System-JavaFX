@@ -29,24 +29,28 @@ public class LoginFormController {
         String username = txtUserName.getText();
         String password = txtPassword.getText();
 
-        if (username.equals("nisal") && password.equals("1234")){
+        if (username.equals("nisal") && password.equals("1234")) {
 
-        try {
-            Stage stage = new Stage();
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"))));
-            stage.setTitle("Dashboard");
-            stage.show();
+            try {
 
-            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+                Scene dashboardScene = new Scene(
+                        FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"))
+                );
 
-        } catch (IOException e) {
-            e.printStackTrace();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                stage.setScene(dashboardScene);
+                stage.setTitle("Dashboard");
+                stage.centerOnScreen();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            lblError.setText("Invalid username or password");
         }
-    } else{
-        lblError.setText("Invalid username or password");
-        }
-
     }
-
 }
+
 

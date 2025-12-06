@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="787.0" prefWidth="800.0" style="-fx-background-color: #E9B3FB;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ItemFormController">
+   <children>
+      <AnchorPane prefHeight="61.0" prefWidth="800.0" style="-fx-background-color: #1055C9;">
+         <children>
+            <Label layoutX="313.0" layoutY="8.0" text="Item Manage" textFill="#f7f4f4">
+               <font>
+                  <Font name="System Bold Italic" size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label fx:id="lblItemCode" layoutX="45.0" layoutY="145.0" text="Item Code" textFill="#100f0f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDescription" layoutX="436.0" layoutY="156.0" text="Description" textFill="#100f0f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblItemSize" layoutX="31.0" layoutY="236.0" text="Item Size" textFill="#100f0f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblItemPrice" layoutX="415.0" layoutY="250.0" text="Item Price" textFill="#100f0f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDiscount" layoutX="26.0" layoutY="327.0" text="Discount" textFill="#100f0f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblQuantity" layoutX="410.0" layoutY="327.0" text="Quantity" textFill="#100f0f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="318.0" layoutY="395.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="46.0" prefWidth="100.0" style="-fx-background-color: #41A67E;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="445.0" layoutY="395.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="46.0" prefWidth="100.0" style="-fx-background-color: #450693;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="565.0" layoutY="395.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="46.0" prefWidth="100.0" style="-fx-background-color: #C62300;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="686.0" layoutY="395.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="46.0" prefWidth="100.0" style="-fx-background-color: #D10363;" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Button>
+      <TableView layoutY="466.0" prefHeight="246.0" prefWidth="800.0" style="-fx-background-color: #FFFCFB;">
+        <columns>
+          <TableColumn fx:id="colItemCode" prefWidth="111.20001220703125" style="background-color: #FF0000;" text="Item Code" />
+          <TableColumn fx:id="colDesctiption" prefWidth="153.5999755859375" text="Description" />
+            <TableColumn fx:id="colItemSize" prefWidth="131.2000732421875" text="Item Size" />
+            <TableColumn fx:id="colItemPrice" prefWidth="134.39996337890625" text="Item Price" />
+            <TableColumn fx:id="colDiscount" prefWidth="132.79998779296875" text="Discount" />
+            <TableColumn fx:id="colQuantity" prefWidth="132.79998779296875" text="Quantity" />
+        </columns>
+      </TableView>
+      <Button layoutX="671.0" layoutY="726.0" mnemonicParsing="false" onAction="#btnReloadOnAction" prefHeight="46.0" prefWidth="100.0" style="-fx-background-color: #FF0000;" text="Reload" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtItemCode" layoutX="191.0" layoutY="155.0" prefHeight="26.0" prefWidth="162.0" />
+      <TextField fx:id="txtItemSize" layoutX="189.0" layoutY="242.0" prefHeight="26.0" prefWidth="162.0" />
+      <TextField fx:id="txtDiscount" layoutX="159.0" layoutY="332.0" prefHeight="26.0" prefWidth="198.0" />
+      <TextField fx:id="txtItemPrice" layoutX="534.0" layoutY="253.0" prefHeight="26.0" prefWidth="184.0" />
+      <TextField fx:id="txtDescription" layoutX="569.0" layoutY="164.0" prefHeight="26.0" prefWidth="184.0" />
+      <TextField fx:id="txtQuantity" layoutX="523.0" layoutY="330.0" prefHeight="26.0" prefWidth="198.0" />
+   </children>
+</AnchorPane>
