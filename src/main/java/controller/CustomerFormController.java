@@ -56,15 +56,36 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     private TextField txtSalary;
-
+    CustomerService customerService=new CustomerServiceImpl();
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
 
+
+
+        Customer customer = new Customer(
+                txtCustomerID.getText(),
+                txtCustomerName.getText(),
+                txtAddress.getText(),
+                Double.parseDouble(txtSalary.getText()),
+                txtCity.getText()
+        );
+         customerService.AddCustomer(customer);
+
     }
+
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
+
+        String id = txtCustomerID.getText();
+        boolean isDeleted = customerService.DeleteCustomer(id);
+
+        if(isDeleted) {
+            System.out.println("Customer Delete Successfully");
+        } else {
+            System.out.println("Customer Not Found!");
+        }
 
     }
 
@@ -83,7 +104,7 @@ public class CustomerFormController implements Initializable {
 
     }
 
-    CustomerService customerService = new CustomerServiceImpl();
+
 
     ObservableList <Customer> customerList = FXCollections.observableArrayList();
     @Override
@@ -93,8 +114,6 @@ public class CustomerFormController implements Initializable {
         colAddress.setCellValueFactory(new PropertyValueFactory<>("Address"));
         colSalary.setCellValueFactory(new PropertyValueFactory<>("Salary"));
         colCity.setCellValueFactory(new PropertyValueFactory<>("City"));
-
-
 
         tblCustomer.setItems(customerList);
 
