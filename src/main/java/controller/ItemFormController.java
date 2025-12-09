@@ -1,238 +1,137 @@
 package controller;
 
+import com.jfoenix.controls.JFXTextField;
+import dto.Item;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import service.ItemService;
+import service.ItemServiceImpl;
 
-public class ItemFormController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    private TableColumn<?, ?> colDesctiption;
+public class ItemFormController implements Initializable {
 
-    @FXML
-    private TableColumn<?, ?> colDiscount;
 
-    @FXML
-    private TableColumn<?, ?> colItemCode;
-
-    @FXML
-    private TableColumn<?, ?> colItemPrice;
+    private final ItemService itemService = new ItemServiceImpl();
+    private final ObservableList<Item> itemList = FXCollections.observableArrayList();
 
     @FXML
-    private TableColumn<?, ?> colItemSize;
+    private TableView<Item> tblItems;
 
     @FXML
-    private TableColumn<?, ?> colQuantity;
+    private TableColumn<Item, String> colItemCode;
 
     @FXML
-    private Label lblDescription;
+    private TableColumn<Item, String> colDesctiption;
 
     @FXML
-    private Label lblDiscount;
+    private TableColumn<Item, String> colItemSize;
 
     @FXML
-    private Label lblItemCode;
+    private TableColumn<Item, Double> colItemPrice;
 
     @FXML
-    private Label lblItemPrice;
+    private TableColumn<Item, String> colDiscount;
 
     @FXML
-    private Label lblItemSize;
-
-    @FXML
-    private Label lblQuantity;
-
-    @FXML
-    private TextField txtDescription;
-
-    @FXML
-    private TextField txtDiscount;
+    private TableColumn<Item, Integer> colQuantity;
 
     @FXML
     private TextField txtItemCode;
 
     @FXML
-    private TextField txtItemPrice;
+    private TextField txtDescription;
 
     @FXML
     private TextField txtItemSize;
 
     @FXML
+    private TextField txtItemPrice;
+
+    @FXML
+    private TextField txtDiscount;
+
+    @FXML
     private TextField txtQuantity;
-
-
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
+        try {
+
+            Item newItem = new Item(
+                    txtItemCode.getText(),
+                    txtDescription.getText(),
+                    txtItemSize.getText(),
+                    Double.parseDouble(txtItemPrice.getText()),
+                    txtDiscount.getText(),
+                    Integer.parseInt(txtQuantity.getText())
+            );
+
+            itemService.AddItem(newItem);
+            loadItemTable();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Item added successfully!");
+            alert.showAndWait();
+
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to add item");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+
 
     }
-
     private void loadItemTable() {
+       itemList.clear();
+        itemList.addAll(itemService.getAll());
+        tblItems.setItems(itemList);
+//        alert.showAndWait();
     }
 
-    @FXML
-    void btnDeleteOnAction(ActionEvent event) {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colItemCode.setCellValueFactory(new PropertyValueFactory<>("itemCode"));
+        colDesctiption.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colItemSize.setCellValueFactory(new PropertyValueFactory<>("itemSize"));
+        colItemPrice.setCellValueFactory(new PropertyValueFactory<>("itemPrice"));
+        colDiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
+        colQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
+        loadItemTable();
+    }
+
+    public void btnReloadOnAction(ActionEvent event) {
 
     }
 
-    @FXML
-    void btnReloadOnAction(ActionEvent event) {
+    public void btnUpdateOnAction(ActionEvent event) {
 
     }
 
-    @FXML
-    void btnSearchOnAction(ActionEvent event) {
+    public void btnDeleteOnAction(ActionEvent event) {
 
     }
 
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) {
+    public void btnSearchOnAction(ActionEvent event) {
 
-    }
-
-    public TableColumn<?, ?> getColDesctiption() {
-        return colDesctiption;
-    }
-
-    public void setColDesctiption(TableColumn<?, ?> colDesctiption) {
-        this.colDesctiption = colDesctiption;
-    }
-
-    public TableColumn<?, ?> getColDiscount() {
-        return colDiscount;
-    }
-
-    public void setColDiscount(TableColumn<?, ?> colDiscount) {
-        this.colDiscount = colDiscount;
-    }
-
-    public TableColumn<?, ?> getColItemCode() {
-        return colItemCode;
-    }
-
-    public void setColItemCode(TableColumn<?, ?> colItemCode) {
-        this.colItemCode = colItemCode;
-    }
-
-    public TableColumn<?, ?> getColItemPrice() {
-        return colItemPrice;
-    }
-
-    public void setColItemPrice(TableColumn<?, ?> colItemPrice) {
-        this.colItemPrice = colItemPrice;
-    }
-
-    public TableColumn<?, ?> getColItemSize() {
-        return colItemSize;
-    }
-
-    public void setColItemSize(TableColumn<?, ?> colItemSize) {
-        this.colItemSize = colItemSize;
-    }
-
-    public TableColumn<?, ?> getColQuantity() {
-        return colQuantity;
-    }
-
-    public void setColQuantity(TableColumn<?, ?> colQuantity) {
-        this.colQuantity = colQuantity;
-    }
-
-    public Label getLblDescription() {
-        return lblDescription;
-    }
-
-    public void setLblDescription(Label lblDescription) {
-        this.lblDescription = lblDescription;
-    }
-
-    public Label getLblDiscount() {
-        return lblDiscount;
-    }
-
-    public void setLblDiscount(Label lblDiscount) {
-        this.lblDiscount = lblDiscount;
-    }
-
-    public Label getLblItemCode() {
-        return lblItemCode;
-    }
-
-    public void setLblItemCode(Label lblItemCode) {
-        this.lblItemCode = lblItemCode;
-    }
-
-    public Label getLblItemPrice() {
-        return lblItemPrice;
-    }
-
-    public void setLblItemPrice(Label lblItemPrice) {
-        this.lblItemPrice = lblItemPrice;
-    }
-
-    public Label getLblItemSize() {
-        return lblItemSize;
-    }
-
-    public void setLblItemSize(Label lblItemSize) {
-        this.lblItemSize = lblItemSize;
-    }
-
-    public Label getLblQuantity() {
-        return lblQuantity;
-    }
-
-    public void setLblQuantity(Label lblQuantity) {
-        this.lblQuantity = lblQuantity;
-    }
-
-    public TextField getTxtDescription() {
-        return txtDescription;
-    }
-
-    public void setTxtDescription(TextField txtDescription) {
-        this.txtDescription = txtDescription;
-    }
-
-    public TextField getTxtDiscount() {
-        return txtDiscount;
-    }
-
-    public void setTxtDiscount(TextField txtDiscount) {
-        this.txtDiscount = txtDiscount;
-    }
-
-    public TextField getTxtItemCode() {
-        return txtItemCode;
-    }
-
-    public void setTxtItemCode(TextField txtItemCode) {
-        this.txtItemCode = txtItemCode;
-    }
-
-    public TextField getTxtItemPrice() {
-        return txtItemPrice;
-    }
-
-    public void setTxtItemPrice(TextField txtItemPrice) {
-        this.txtItemPrice = txtItemPrice;
-    }
-
-    public TextField getTxtItemSize() {
-        return txtItemSize;
-    }
-
-    public void setTxtItemSize(TextField txtItemSize) {
-        this.txtItemSize = txtItemSize;
-    }
-
-    public TextField getTxtQuantity() {
-        return txtQuantity;
-    }
-
-    public void setTxtQuantity(TextField txtQuantity) {
-        this.txtQuantity = txtQuantity;
     }
 }
+
+
+
+

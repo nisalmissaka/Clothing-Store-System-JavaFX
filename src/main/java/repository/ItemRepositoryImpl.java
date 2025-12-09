@@ -1,21 +1,58 @@
 package repository;
 
 import db.DBConnection;
+import dto.Customer;
+import dto.Item;
+import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ItemRepositoryImpl implements ItemRepository{
-    public ResultSet getAll() throws SQLException {
+public class ItemRepositoryImpl implements ItemRepository {
+
+
+
+    @Override
+    public void AddItem(Item item) throws SQLException {
+
+        String sql =
+                "INSERT INTO item ( ItemCode ,Description  , ItemSize   ,  ItemPrice , Discount , Quantity ) " +
+                        "VALUES (?,?,?,?,?,?)";
+
+        Connection con = DBConnection.getInstance().getConnection();
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, item.getItemCode());
+        ps.setString(2, item.getDescription());
+        ps.setString(3, item.getItemSize());
+        ps.setDouble(4, item.getItemPrice());
+        ps.setString(5, item.getDiscount());
+        ps.setInt(6, item.getQuantity());
+
+        ps.executeUpdate();
+    }
+
+    @Override
+    public ResultSet getAllItem() throws SQLException {
         String SQL = "SELECT * FROM item";
         Connection connection = DBConnection.getInstance().getConnection();
         PreparedStatement psTm = connection.prepareStatement(SQL);
         ResultSet resultSet = psTm.executeQuery();
-
         return resultSet;
     }
 
+
+    @Override
+    public Customer getCustomer(String text) {
+        return null;
+
+
+
+    }
 }
+
+
+
 

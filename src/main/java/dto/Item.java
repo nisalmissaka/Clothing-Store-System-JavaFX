@@ -11,15 +11,10 @@ import lombok.ToString;
 @ToString
 public class Item {
 
-    private String Description;
-    private String Discount;
-    private String ItemCode;
-    private double ItemPrice;
-    private String ItemSize;
-    private int Quantity;
-
-
-    public Item(String description, String discount, double itemPrice, String itemSize, String itemCode, int quantity) {
-
-    }
+    private String itemCode;
+    private String description;
+    private String itemSize;
+    private double itemPrice;
+    private String discount;
+    private int quantity;
 }

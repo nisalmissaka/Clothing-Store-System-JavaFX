@@ -70,7 +70,7 @@
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Button>
-      <TableView layoutY="466.0" prefHeight="246.0" prefWidth="800.0" style="-fx-background-color: #FFFCFB;">
+      <TableView fx:id="tblItems" layoutY="466.0" prefHeight="246.0" prefWidth="800.0" style="-fx-background-color: #FFFCFB;">
         <columns>
           <TableColumn fx:id="colItemCode" prefWidth="111.20001220703125" style="background-color: #FF0000;" text="Item Code" />
           <TableColumn fx:id="colDesctiption" prefWidth="153.5999755859375" text="Description" />
