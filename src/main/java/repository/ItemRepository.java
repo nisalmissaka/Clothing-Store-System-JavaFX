@@ -21,6 +21,7 @@ public interface ItemRepository {
     Customer getCustomer(String text);
 
 
+   boolean DeleteItemCode(String itemCode) throws SQLException;
 
 }
 

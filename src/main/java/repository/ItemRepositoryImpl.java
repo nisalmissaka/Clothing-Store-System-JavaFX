@@ -51,7 +51,29 @@ public class ItemRepositoryImpl implements ItemRepository {
 
 
     }
+
+
+        @Override
+        public boolean DeleteItemCode(String itemCode) throws SQLException {
+            Connection connection = DBConnection.getInstance().getConnection();
+            String sql = "DELETE FROM item WHERE ItemCode = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, itemCode);
+
+            int rowsAffected = ps.executeUpdate();  // IMPORTANT
+
+            return rowsAffected > 0;   // true = deleted, false = not found
+
+
+    }
+
 }
+
+
+
+
+
 
 
 

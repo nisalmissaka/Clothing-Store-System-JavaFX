@@ -1,6 +1,5 @@
 package controller;
 
-import com.jfoenix.controls.JFXTextField;
 import dto.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -96,8 +95,9 @@ public class ItemFormController implements Initializable {
 
 
     }
+
     private void loadItemTable() {
-       itemList.clear();
+        itemList.clear();
         itemList.addAll(itemService.getAll());
         tblItems.setItems(itemList);
 //        alert.showAndWait();
@@ -124,11 +124,30 @@ public class ItemFormController implements Initializable {
     }
 
     public void btnDeleteOnAction(ActionEvent event) {
+        boolean isDeleted = itemService.DeleteById(txtItemCode.getText());
 
+        if (isDeleted) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Item Deleted Successfully");
+            alert.showAndWait();
+            loadItemTable();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Delete Failed");
+            alert.setContentText("Item not found or SQL error.");
+            alert.showAndWait();
+        }
     }
+
 
     public void btnSearchOnAction(ActionEvent event) {
 
+    }
+
+    public boolean DeleteItem(String itemCode) {
+        return itemService.DeleteById(itemCode);
     }
 }
 

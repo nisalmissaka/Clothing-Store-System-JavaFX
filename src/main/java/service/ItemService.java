@@ -4,9 +4,6 @@ import com.jfoenix.controls.JFXTextField;
 import dto.Item;
 import javafx.collections.ObservableList;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 public interface ItemService {
 
     ObservableList<Item> getAll();
@@ -16,5 +13,6 @@ public interface ItemService {
     void AddItem(Item newitem);
 
 
+    boolean DeleteById(String itemCode);
 
 }
