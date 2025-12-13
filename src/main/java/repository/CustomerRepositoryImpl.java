@@ -48,7 +48,6 @@ public class CustomerRepositoryImpl implements CustomerRepository{
             return rs;
 
 
-
     }
 
     @Override
@@ -60,9 +59,4 @@ public class CustomerRepositoryImpl implements CustomerRepository{
         System.out.println("Row deleted:" + rows);
     }
 }
-
-
-
-
-
 
