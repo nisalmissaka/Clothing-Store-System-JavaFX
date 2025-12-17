@@ -1,4 +1,15 @@
 package service;
 
-public interface PlaceOrderService {
+import dto.Customer;
+import dto.Item;
+
+public interface PlaceOrderService{
+    Customer getCustomer(String customerId);
+
+
+
+
+
 }
+
+
