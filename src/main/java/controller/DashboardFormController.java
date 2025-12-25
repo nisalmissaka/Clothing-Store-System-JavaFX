@@ -1,5 +1,6 @@
 package controller;
 
+import db.DBConnection;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -11,8 +12,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -100,15 +106,20 @@ public class DashboardFormController {
     }
 
     @FXML
-    void btnOnActionOrders(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/order_form.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Orders");
-        stage.show();
+    void btnOnActionSalesReport(ActionEvent event) {
+        try {
+            JasperDesign design = JRXmlLoader.load("src/main/resources/View/report/Nisal.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(design);
 
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint);
+
+        } catch (JRException | SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
+
 
     @FXML
     void btnOnActionPOS(ActionEvent event) throws IOException {
@@ -117,9 +128,6 @@ public class DashboardFormController {
         stage.setScene(new Scene(root));
         stage.setTitle("POS");
         stage.show();
-
-
-
 
     }
 
@@ -139,4 +147,6 @@ public class DashboardFormController {
     }
 
 }
+
+
 

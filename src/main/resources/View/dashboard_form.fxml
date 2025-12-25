@@ -67,31 +67,31 @@
          </font>
       </Button>
 
-      <Button layoutX="47.0" layoutY="320.0" mnemonicParsing="false" onAction="#btnOnActionPOS" prefHeight="58.0" prefWidth="150.0" style="-fx-background-color: #F875AA;" text="POS" textFill="WHITE">
+      <Button layoutX="47.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnOnActionPOS" prefHeight="58.0" prefWidth="150.0" style="-fx-background-color: #F875AA;" text="POS" textFill="WHITE">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Button>
 
-      <Button layoutX="47.0" layoutY="408.0" mnemonicParsing="false" onAction="#btnOnActionOrders" prefHeight="58.0" prefWidth="150.0" style="-fx-background-color: #78C841;" text="Orders" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="28.0" />
-         </font>
-      </Button>
-
-      <Button layoutX="46.0" layoutY="494.0" mnemonicParsing="false" onAction="#btnOnActionCustomers" prefHeight="59.0" prefWidth="150.0" style="-fx-background-color: #754E1A;" text="Customers" textFill="WHITE">
+      <Button layoutX="44.0" layoutY="637.0" mnemonicParsing="false" onAction="#btnOnActionSalesReport" prefHeight="59.0" prefWidth="161.0" style="-fx-background-color: #78C841;" text="Sales Report" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Button>
 
-      <Button layoutX="46.0" layoutY="586.0" mnemonicParsing="false" onAction="#btnOnActionSupplyers" prefHeight="59.0" prefWidth="150.0" style="-fx-background-color: #C62E2E;" text="Supplyers" textFill="WHITE">
+      <Button layoutX="46.0" layoutY="434.0" mnemonicParsing="false" onAction="#btnOnActionCustomers" prefHeight="59.0" prefWidth="150.0" style="-fx-background-color: #754E1A;" text="Customers" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Button>
 
-      <Button layoutX="47.0" layoutY="670.0" mnemonicParsing="false" onAction="#btnOnActionSetting" prefHeight="59.0" prefWidth="150.0" style="-fx-background-color: #5C5470;" text="Setting" textFill="WHITE">
+      <Button layoutX="46.0" layoutY="537.0" mnemonicParsing="false" onAction="#btnOnActionSupplyers" prefHeight="59.0" prefWidth="150.0" style="-fx-background-color: #C62E2E;" text="Supplyers" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+
+      <Button layoutX="47.0" layoutY="730.0" mnemonicParsing="false" onAction="#btnOnActionSetting" prefHeight="59.0" prefWidth="150.0" style="-fx-background-color: #5C5470;" text="Setting" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
