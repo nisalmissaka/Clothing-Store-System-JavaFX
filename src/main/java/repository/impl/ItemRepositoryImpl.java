@@ -1,13 +1,11 @@
-package repository;
+package repository.impl;
 
 import db.DBConnection;
 import dto.Customer;
 import dto.Item;
-import javafx.collections.ObservableList;
+import repository.ItemRepository;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ItemRepositoryImpl implements ItemRepository {
 

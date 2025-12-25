@@ -12,7 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import service.ItemService;
-import service.ItemServiceImpl;
+import service.impl.ItemServiceImpl;
 
 import java.net.URL;
 import java.util.ResourceBundle;

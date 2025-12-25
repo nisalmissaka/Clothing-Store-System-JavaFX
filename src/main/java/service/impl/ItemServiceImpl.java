@@ -1,11 +1,12 @@
-package service;
+package service.impl;
 
 import com.jfoenix.controls.JFXTextField;
 import dto.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import repository.ItemRepository;
-import repository.ItemRepositoryImpl;
+import repository.impl.ItemRepositoryImpl;
+import service.ItemService;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
