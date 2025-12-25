@@ -1,17 +1,18 @@
-package service;
+package service.impl;
 
 import db.DBConnection;
 import dto.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import repository.CustomerRepository;
-import repository.CustomerRepositoryImpl;
+import repository.impl.CustomerRepositoryImpl;
+import service.CustomerService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
 
     CustomerRepository customerRepository = new CustomerRepositoryImpl();
 
@@ -70,11 +71,9 @@ public class CustomerServiceImpl implements CustomerService{
         return list;
     }
 
-
     @Override
-    public Customer getCustomer(String text) {
+    public Customer getCustomer(String customerId) {
         return null;
     }
-
 
 }

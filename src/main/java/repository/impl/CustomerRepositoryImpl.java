@@ -1,12 +1,13 @@
-package repository;
+package repository.impl;
 
 
 import db.DBConnection;
 import dto.Customer;
+import repository.CustomerRepository;
 
 import java.sql.*;
 
-public class CustomerRepositoryImpl implements CustomerRepository{
+public class CustomerRepositoryImpl implements CustomerRepository {
 
     private String rows;
 
@@ -25,7 +26,7 @@ public class CustomerRepositoryImpl implements CustomerRepository{
 
         PreparedStatement ps = connection.prepareStatement(sql);
 
-        ps.setObject(1, customer.getCustID());
+        ps.setObject(1, customer.getCustomerID());
         ps.setObject(2, customer.getCustomerName());
         ps.setObject(3, customer.getAddress());
         ps.setObject(4, customer.getSalary());
@@ -57,6 +58,11 @@ public class CustomerRepositoryImpl implements CustomerRepository{
         preparedStatement.setString(1,custID);
         preparedStatement.executeUpdate();
         System.out.println("Row deleted:" + rows);
+    }
+
+    @Override
+    public ResultSet searchCustomer(String customerId) {
+        return null;
     }
 }
 

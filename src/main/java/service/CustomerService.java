@@ -17,8 +17,6 @@ public interface CustomerService {
 
     List<Customer> getAllCustomer( ) throws SQLException;
 
-
-    Customer getCustomer(String text);
-
+    Customer getCustomer(String customerId);
 
 }
