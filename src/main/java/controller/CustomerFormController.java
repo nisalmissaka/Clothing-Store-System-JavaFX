@@ -1,5 +1,6 @@
 package controller;
 
+import db.DBConnection;
 import dto.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,10 +12,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import service.CustomerService;
-import service.CustomerServiceImpl;
+import service.impl.CustomerServiceImpl;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -23,6 +27,8 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     public TableView<Customer> tblCustomer;
+    public ObservableList<String> getCustomerIds;
+
 
     @FXML
     private TableColumn<?, ?> colAddress;
@@ -60,8 +66,6 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
-
-
 
         Customer customer = new Customer(
                 txtCustomerID.getText(),
@@ -124,6 +128,29 @@ public class CustomerFormController implements Initializable {
             throw new RuntimeException(e);
         }
 
+
+    }
+
+    public static List<Customer> getAll() {
+        return null;
+
+    }
+
+    public Customer searchCustomer(String newValue)  {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+           ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM customer WHERE CustID = ");
+            resultSet.next();
+            return new Customer(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getDouble(4),
+                    resultSet.getString(5)
+                    );
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }
