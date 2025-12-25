@@ -1,15 +1,15 @@
 package service;
 
-import dto.Customer;
-import dto.Item;
+import dto.CartItem;
+import dto.Order;
 
-public interface PlaceOrderService{
-    Customer getCustomer(String customerId);
+import java.sql.SQLException;
+import java.util.List;
 
+public interface PlaceOrderService {
 
-
-
-
+    boolean placeOrder(Order order, List<CartItem> cartItems) throws SQLException;
 }
+
 
 
