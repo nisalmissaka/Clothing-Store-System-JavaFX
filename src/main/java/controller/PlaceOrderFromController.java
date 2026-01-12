@@ -1,6 +1,8 @@
 package controller;
 
 import dto.CartItem;
+import dto.Customer;
+import dto.Item;
 import dto.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,10 +17,16 @@ import java.sql.SQLException;
 public class PlaceOrderFromController {
 
     @FXML
+    public TextField txtCustomerID;
+
+    @FXML
     private TextField txtItemCode;
     @FXML
     private TextField txtQuantity;
-
+    @FXML
+    private Label lblCustomerName;
+    @FXML
+    private Label lblsalary;
     @FXML
     private Label lblDescription;
     @FXML
@@ -36,7 +44,7 @@ public class PlaceOrderFromController {
     ObservableList<CartItem> cartItemsObservableList = FXCollections.observableArrayList();
     PlaceOrderService placeOrderService = new PlaceOrderServiceImpl();
 
-    // ================= ADD TO CART =================
+
     @FXML
     void btnAddToCartOnAction(ActionEvent event) {
 
@@ -72,7 +80,7 @@ public class PlaceOrderFromController {
         return (unitPrice * qty) - discount;
     }
 
-    // ================= NET TOTAL =================
+
     private void calculateNetTotal() {
         double netTotal = 0;
         for (CartItem item : cartItemsObservableList) {
@@ -81,7 +89,7 @@ public class PlaceOrderFromController {
         lblNetTotal.setText(String.valueOf(netTotal));
     }
 
-    // ================= CLEAR =================
+
     private void clearFields() {
         txtItemCode.clear();
         txtQuantity.clear();
@@ -90,7 +98,23 @@ public class PlaceOrderFromController {
         lblDiscount.setText("0.0");
     }
 
-    // ================= PLACE ORDER =================
+    @FXML
+    void txtCustomerIDOnAction(ActionEvent event) {
+        String customerId = txtCustomerID.getText();
+        Customer customer = placeOrderService.searchCustomer(customerId);
+
+        if (customer != null) {
+            lblCustomerName.setText(customer.getCustomerName());
+            lblsalary.setText(String.valueOf(customer.getSalary()));
+        }else {
+            new Alert(Alert.AlertType.WARNING,"Customer Not Found").show();
+            txtCustomerID.clear();
+            lblCustomerName.setText("");
+            lblsalary.setText("");
+        }
+
+    }
+
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
         try {
@@ -114,5 +138,22 @@ public class PlaceOrderFromController {
         } catch (SQLException | NumberFormatException e) {
             new Alert(Alert.AlertType.ERROR, "Invalid Data").show();
         }
+
+
+    }
+
+    public void txtItemCodeOnAction(ActionEvent event) {
+        Item item = placeOrderService.searchItem(txtItemCode.getText());
+
+        if (item != null) {
+            lblDescription.setText(item.getDescription());
+            lblUnitPrice.setText(String.valueOf(item.getItemPrice()));
+            lblDiscount.setText(String.valueOf(item.getDiscount()));
+            txtQuantity.requestFocus();
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Item Not Found").show();
+            clearFields();
+        }
+
     }
 }
