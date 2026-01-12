@@ -26,7 +26,7 @@ public class ItemRepositoryImpl implements ItemRepository {
         ps.setString(2, item.getDescription());
         ps.setString(3, item.getItemSize());
         ps.setDouble(4, item.getItemPrice());
-        ps.setString(5, item.getDiscount());
+        ps.setDouble(5, item.getDiscount());
         ps.setInt(6, item.getQuantity());
 
         ps.executeUpdate();
