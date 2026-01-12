@@ -15,6 +15,10 @@ public class Item {
     private String description;
     private String itemSize;
     private double itemPrice;
-    private String discount;
+    private double discount;
     private int quantity;
+
+    public Item(String text, String text1, String text2, double itemPrice, String text3, int quantity) {
+
+    }
 }
