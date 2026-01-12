@@ -16,15 +16,10 @@ public class Customer {
     private Double Salary;
     private String City;
 
-
-    public Customer(String customerID, String customerName, String address, String salary, String string) {
-
-
-
+    public Customer(String customerID, String customerName, Double salary) {
+        this.CustomerID = customerID;
+        this.CustomerName = customerName;
+        this.Salary = salary;
     }
 
-    public static String getId() {
-
-        return "";
-    }
 }
