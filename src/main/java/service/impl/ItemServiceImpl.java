@@ -29,7 +29,7 @@ public class ItemServiceImpl implements ItemService {
                         resultSet.getString("description"),
                         resultSet.getString("itemSize"),
                         resultSet.getDouble("itemPrice"),
-                        resultSet.getString("discount"),
+                        resultSet.getDouble("discount"),
                         resultSet.getInt("quantity")
                 );
                 itemObservableList.add(item);
