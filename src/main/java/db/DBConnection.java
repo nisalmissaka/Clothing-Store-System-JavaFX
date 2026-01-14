@@ -15,6 +15,7 @@ public class DBConnection {
         return null==instance?instance=new DBConnection():instance;
     }
     public Connection getConnection(){
+
         return connection;
     }
 }
