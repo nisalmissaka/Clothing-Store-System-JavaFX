@@ -71,7 +71,7 @@ public class ItemFormController implements Initializable {
                     txtDescription.getText(),
                     txtItemSize.getText(),
                     Double.parseDouble(txtItemPrice.getText()),
-                    txtDiscount.getText(),
+                    Double.parseDouble(txtDiscount.getText()),
                     Integer.parseInt(txtQuantity.getText())
             );
 
