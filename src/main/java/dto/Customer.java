@@ -10,15 +10,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Customer {
-    private String CustomerID;
-    private  String CustomerName;
+    private String customerID;
+    private  String customerName;
     private String Address;
     private Double Salary;
     private String City;
 
     public Customer(String customerID, String customerName, Double salary) {
-        this.CustomerID = customerID;
-        this.CustomerName = customerName;
+        this.customerID = customerID;
+        this.customerName = customerName;
         this.Salary = salary;
     }
 
