@@ -113,7 +113,7 @@ public class CustomerFormController implements Initializable {
     ObservableList <Customer> customerList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        colCustomerID.setCellValueFactory(new PropertyValueFactory<>("CustID"));
+        colCustomerID.setCellValueFactory(new PropertyValueFactory<>("CustomerID"));
         colCustomerName.setCellValueFactory(new PropertyValueFactory<>("CustomerName"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("Address"));
         colSalary.setCellValueFactory(new PropertyValueFactory<>("Salary"));
