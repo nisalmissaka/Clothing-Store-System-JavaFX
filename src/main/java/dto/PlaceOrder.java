@@ -10,10 +10,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class PlaceOrder {
-    private String ItemCode;
-    private String Description;
-    private String Quantity;
-    private double UnitPrice;
-    private String Discount;
+    private String itemCode;
+    private String description;
+    private String quantity;
+    private double unitPrice;
+    private String discount;
     private String total;
+
 }

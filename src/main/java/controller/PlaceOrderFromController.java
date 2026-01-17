@@ -22,7 +22,7 @@ public class PlaceOrderFromController {
     @FXML
     private TextField txtItemCode;
     @FXML
-    private TextField txtQuantity;
+    private Label lblQuantity;
     @FXML
     private Label lblCustomerName;
     @FXML
@@ -50,14 +50,14 @@ public class PlaceOrderFromController {
 
         double total = calculateTotal(
                 lblUnitPrice.getText(),
-                txtQuantity.getText(),
+                lblQuantity.getText(),
                 lblDiscount.getText()
         );
 
         CartItem cartItem = new CartItem(
                 txtItemCode.getText(),
                 lblDescription.getText(),
-                Integer.parseInt(txtQuantity.getText()),
+                Integer.parseInt(lblQuantity.getText()),
                 Double.parseDouble(lblUnitPrice.getText()),
                 Double.parseDouble(lblDiscount.getText()),
                 total
@@ -92,7 +92,7 @@ public class PlaceOrderFromController {
 
     private void clearFields() {
         txtItemCode.clear();
-        txtQuantity.clear();
+        lblQuantity.setText("");
         lblDescription.setText("");
         lblUnitPrice.setText("");
         lblDiscount.setText("0.0");
@@ -121,7 +121,7 @@ public class PlaceOrderFromController {
             Order order = new Order(
                     txtItemCode.getText(),
                     lblDescription.getText(),
-                    Integer.parseInt(txtQuantity.getText()),
+                    Integer.parseInt(lblQuantity.getText()),
                     Double.parseDouble(lblUnitPrice.getText()),
                     Double.parseDouble(lblDiscount.getText()),
                     Double.parseDouble(lblNetTotal.getText())
@@ -147,9 +147,9 @@ public class PlaceOrderFromController {
 
         if (item != null) {
             lblDescription.setText(item.getDescription());
-            lblUnitPrice.setText(String.valueOf(item.getItemPrice()));
+            lblUnitPrice.setText(String.valueOf(item.getItemprice()));
             lblDiscount.setText(String.valueOf(item.getDiscount()));
-            txtQuantity.requestFocus();
+            lblQuantity.requestFocus();
         } else {
             new Alert(Alert.AlertType.WARNING, "Item Not Found").show();
             clearFields();
