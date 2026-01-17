@@ -18,7 +18,15 @@ public class Item {
     private double discount;
     private int quantity;
 
-    public Item(String text, String text1, String text2, double itemPrice, String text3, int quantity) {
+    public Item(String itemCode, String description, double itemPrice, double discount) {
+        this.itemCode = itemCode;
+        this.description = description;
+        this.itemPrice = itemPrice;
+        this.discount = discount;
+    }
+
+    public Item(String txtItemCode, String description, double itemprice, double discount, int quantity) {
 
     }
 }
+

@@ -45,6 +45,28 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 
     @Override
     public Item searchItem(String txtItemCode) {
+        String sql = "SELECT description,itemprice,discount,quantity FROM item WHERE item_code=?";
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,txtItemCode);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return new Item(
+                        txtItemCode,
+                        resultSet.getString("description"),
+                        resultSet.getDouble("itemprice"),
+                        resultSet.getDouble("discount"),
+                        resultSet.getInt("Quantity")
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
