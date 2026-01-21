@@ -92,6 +92,7 @@ public class PlaceOrderFromController {
 
     private void clearFields() {
         txtItemCode.clear();
+        txtItemCode.requestFocus();
         lblQuantity.setText("");
         lblDescription.setText("");
         lblUnitPrice.setText("");
@@ -143,13 +144,12 @@ public class PlaceOrderFromController {
     }
 
     public void txtItemCodeOnAction(ActionEvent event) {
-        Item item = placeOrderService.searchItem(txtItemCode.getText());
+        Item item = placeOrderService.searchItem(txtItemCode.getText().trim());
 
         if (item != null) {
-            lblDescription.setText(item.getDescription());
-            lblUnitPrice.setText(String.valueOf(item.getItemprice()));
+           lblUnitPrice.setText(String.valueOf(item.getItemPrice()));
             lblDiscount.setText(String.valueOf(item.getDiscount()));
-            lblQuantity.requestFocus();
+            lblDescription.setText(String.valueOf(item.getDescription()));
         } else {
             new Alert(Alert.AlertType.WARNING, "Item Not Found").show();
             clearFields();
