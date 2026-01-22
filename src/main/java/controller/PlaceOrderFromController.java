@@ -186,10 +186,10 @@ public class PlaceOrderFromController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colItemCode.setCellValueFactory(new PropertyValueFactory<>("ItemCode"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        colDiscount.setCellValueFactory(new PropertyValueFactory<>("Discount"));
-        colItemPrice.setCellValueFactory(new PropertyValueFactory<>("ItemPrice"));
-        colTotal.setCellValueFactory(new PropertyValueFactory<>("Total"));
         colQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+        colItemPrice.setCellValueFactory(new PropertyValueFactory<>("ItemPrice"));
+        colDiscount.setCellValueFactory(new PropertyValueFactory<>("Discount"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("Total"));
 
     }
 }
