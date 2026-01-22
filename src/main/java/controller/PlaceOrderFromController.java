@@ -89,7 +89,7 @@ public class PlaceOrderFromController implements Initializable {
 
         lblTotal.setText(String.valueOf(total));
         calculateNetTotal();
-        clearFields();
+
     }
 
     // ================= CALCULATE TOTAL =================
