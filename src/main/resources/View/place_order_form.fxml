@@ -133,6 +133,6 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtQuantity" layoutX="731.0" layoutY="421.0" onAction="#txtIQuantityOnAction" prefHeight="27.0" prefWidth="150.0" promptText="Quantity" />
+      <TextField fx:id="txtQuantity" layoutX="731.0" layoutY="421.0" onAction="#txtQuantityOnAction" prefHeight="27.0" prefWidth="150.0" promptText="Quantity" />
    </children>
 </AnchorPane>
