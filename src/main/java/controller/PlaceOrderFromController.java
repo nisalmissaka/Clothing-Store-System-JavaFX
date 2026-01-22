@@ -8,22 +8,42 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import service.PlaceOrderService;
 import service.impl.PlaceOrderServiceImpl;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class PlaceOrderFromController {
+public class PlaceOrderFromController implements Initializable {
 
+
+    @FXML
+    private TableColumn<?, ?> colDescription;
+
+    @FXML
+    private TableColumn<?, ?> colDiscount;
+
+    @FXML
+    private TableColumn<?, ?> colItemCode;
+
+    @FXML
+    private TableColumn<?, ?> colItemPrice;
+
+    @FXML
+    private TableColumn<?, ?> colQuantity;
+
+    @FXML
+    private TableColumn<?, ?> colTotal;
     @FXML
     public TextField txtCustomerID;
     @FXML
     private TextField txtQuantity;
     @FXML
     private TextField txtItemCode;
-    @FXML
-    private Label lblQuantity;
     @FXML
     private Label lblCustomerName;
     @FXML
@@ -51,14 +71,14 @@ public class PlaceOrderFromController {
 
         double total = calculateTotal(
                 lblUnitPrice.getText(),
-                lblQuantity.getText(),
+                txtQuantity.getText(),
                 lblDiscount.getText()
         );
 
         CartItem cartItem = new CartItem(
                 txtItemCode.getText(),
                 lblDescription.getText(),
-                Integer.parseInt(lblQuantity.getText()),
+                Integer.parseInt(txtQuantity.getText()),
                 Double.parseDouble(lblUnitPrice.getText()),
                 Double.parseDouble(lblDiscount.getText()),
                 total
@@ -94,7 +114,7 @@ public class PlaceOrderFromController {
     private void clearFields() {
         txtItemCode.clear();
         txtItemCode.requestFocus();
-        lblQuantity.setText("");
+        txtQuantity.setText("");
         lblDescription.setText("");
         lblUnitPrice.setText("");
         lblDiscount.setText("0.0");
@@ -123,7 +143,7 @@ public class PlaceOrderFromController {
             Order order = new Order(
                     txtItemCode.getText(),
                     lblDescription.getText(),
-                    Integer.parseInt(lblQuantity.getText()),
+                    Integer.parseInt(txtQuantity.getText()),
                     Double.parseDouble(lblUnitPrice.getText()),
                     Double.parseDouble(lblDiscount.getText()),
                     Double.parseDouble(lblNetTotal.getText())
@@ -158,7 +178,18 @@ public class PlaceOrderFromController {
 
     }
     @FXML
-    void txtIQuantityOnAction(ActionEvent event) {
+    void txtQuantityOnAction(ActionEvent event) {
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colItemCode.setCellValueFactory(new PropertyValueFactory<>("ItemCode"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        colDiscount.setCellValueFactory(new PropertyValueFactory<>("Discount"));
+        colItemPrice.setCellValueFactory(new PropertyValueFactory<>("ItemPrice"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("Total"));
+        colQuantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
 
     }
 }
