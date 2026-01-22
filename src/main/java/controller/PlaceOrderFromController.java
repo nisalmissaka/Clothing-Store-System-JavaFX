@@ -18,7 +18,8 @@ public class PlaceOrderFromController {
 
     @FXML
     public TextField txtCustomerID;
-
+    @FXML
+    private TextField txtQuantity;
     @FXML
     private TextField txtItemCode;
     @FXML
@@ -154,6 +155,10 @@ public class PlaceOrderFromController {
             new Alert(Alert.AlertType.WARNING, "Item Not Found").show();
             clearFields();
         }
+
+    }
+    @FXML
+    void txtIQuantityOnAction(ActionEvent event) {
 
     }
 }

@@ -128,10 +128,11 @@
          </font>
       </Label>
       <TextField fx:id="txtOrderID" layoutX="732.0" layoutY="151.0" prefHeight="27.0" prefWidth="150.0" promptText="Order ID" />
-      <Label fx:id="lblQuantity" layoutX="746.0" layoutY="421.0" text="Quantity">
+      <Label fx:id="lblQuantity" layoutX="746.0" layoutY="421.0">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
+      <TextField fx:id="txtQuantity" layoutX="731.0" layoutY="421.0" onAction="#txtIQuantityOnAction" prefHeight="27.0" prefWidth="150.0" promptText="Quantity" />
    </children>
 </AnchorPane>
