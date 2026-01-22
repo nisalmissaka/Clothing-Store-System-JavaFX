@@ -122,7 +122,7 @@
       </Label>
       <TextField fx:id="txtCustomerID" layoutX="732.0" layoutY="195.0" onAction="#txtCustomerIDOnAction" prefHeight="27.0" prefWidth="150.0" promptText="Customer ID" />
       <TextField fx:id="txtItemCode" layoutX="732.0" layoutY="309.0" onAction="#txtItemCodeOnAction" prefHeight="27.0" prefWidth="150.0" promptText="ITM001" />
-      <Label fx:id="lblNetTotal" layoutX="852.0" layoutY="674.0" prefHeight="18.0" prefWidth="25.0" text="0.0" textFill="#c41515">
+      <Label fx:id="lblNetTotal" layoutX="852.0" layoutY="674.0" prefHeight="20.0" prefWidth="74.0" text="0.0" textFill="#c41515">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
