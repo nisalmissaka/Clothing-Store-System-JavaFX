@@ -14,7 +14,7 @@ public class CartItem {
     private String ItemCode;
     private String Description;
     private int Quantity;
-    private double UnitPrice;
+    private double ItemPrice;
     private double Discount;
     private double Total;
 }
