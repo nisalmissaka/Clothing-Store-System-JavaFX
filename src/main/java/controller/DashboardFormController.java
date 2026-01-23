@@ -117,6 +117,7 @@ public class DashboardFormController {
             design.setQuery(jrDesignQuery);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+            JasperExportManager.exportReportToPdfFile(jasperPrint,"sales_report.pdf");
             JasperViewer.viewReport(jasperPrint);
 
         } catch (JRException | SQLException e) {
