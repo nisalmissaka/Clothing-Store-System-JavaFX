@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
@@ -110,6 +111,10 @@ public class DashboardFormController {
         try {
             JasperDesign design = JRXmlLoader.load("src/main/resources/View/report/Nisal.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(design);
+
+            JRDesignQuery jrDesignQuery = new JRDesignQuery();
+            jrDesignQuery.setText("SELECT Description,ItemPrice,Discount,Quantity FROM item WHERE ItemCode=?");
+            design.setQuery(jrDesignQuery);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
             JasperViewer.viewReport(jasperPrint);
