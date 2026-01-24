@@ -3,17 +3,18 @@ package dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Order {
-    private String CustomerID;
-    private String ItemCode;
-    private double UnitPrice;
-    private String Description;
-    private String Quantity;
-    private String Address;
+
+    private String itemCode;
+    private String description;
+    private int quantity;
+    private double unitPrice;
+    private double discount;
+    private double total;
 }
+
+
