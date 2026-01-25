@@ -1,6 +1,7 @@
 package service;
 
 import com.jfoenix.controls.JFXTextField;
+import dto.CartItem;
 import dto.Item;
 import javafx.collections.ObservableList;
 
@@ -14,5 +15,7 @@ public interface ItemService {
 
 
     boolean DeleteById(String itemCode);
+
+    boolean updateItemQuantity(ObservableList<CartItem> cartItemObservableList);
 
 }
