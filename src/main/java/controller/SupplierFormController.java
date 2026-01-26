@@ -1,12 +1,16 @@
 package controller;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import dto.Supplyer;
 import javafx.scene.control.cell.PropertyValueFactory;
+import service.SupplyerService;
+import service.impl.SupplyerServiceImpl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,38 +50,50 @@ public class SupplierFormController implements Initializable {
     @FXML
     private TextField txtSupplierName;
 
+    SupplyerService supplyerService = new SupplyerServiceImpl() {
 
 
-    @FXML
-    void btnAddSupplierOnAction(ActionEvent event) {
+        @FXML
+        void btnAddSupplierOnAction(ActionEvent event) {
+            Supplyer supplyer = new Supplyer(
+                    txtSupplierID.getText(),
+                    txtSupplierName.getText(),
+                    txtPhoneNumber.getText(),
+                    txtAddress.getText()
 
-    }
-
-
-    @FXML
-    void btnDeleteOnAction(ActionEvent event) {
-
-    }
-
-
-    @FXML
-    void btnSearchOnAction(ActionEvent event) {
+            );
+            supplyerService.AddSupplyer(supplyer);
+        }
 
     }
 
 
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) {
+        @FXML
+        void btnDeleteOnAction(ActionEvent event) {
 
-    }
+        }
 
-    // INITIALIZE METHOD
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phone number"));
-        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+
+        @FXML
+        void btnSearchOnAction(ActionEvent event) {
+
+        }
+
+
+        @FXML
+        void btnUpdateOnAction(ActionEvent event) {
+
+        }
+
+        final ObservableList<Supplyer> supplyerList = FXCollections.observableArrayList();
+
+        @Override
+        public void initialize(URL url, ResourceBundle resourceBundle) {
+            colID.setCellValueFactory(new PropertyValueFactory<>("id"));
+            colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+            colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phone number"));
+            colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+
     }
 }
 
