@@ -43,7 +43,7 @@
             <columns>
                 <TableColumn fx:id="colID" prefWidth="60.7999906539917" text="id" />
                 <TableColumn fx:id="colName" prefWidth="107.20000457763672" text="Name" />
-                <TableColumn fx:id="colPhoenNumber" prefWidth="105.60003662109375" text="Phone Number" />
+                <TableColumn fx:id="colPhoneNumber" prefWidth="105.60003662109375" text="Phone Number" />
                 <TableColumn fx:id="colAddress" prefWidth="103.99993896484375" text="Address" />
             </columns>
         </TableView>

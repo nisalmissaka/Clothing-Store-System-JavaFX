@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import dto.Supplyer;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -73,7 +74,10 @@ public class SupplierFormController implements Initializable {
     // INITIALIZE METHOD
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Table Load or Init Setup
+        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phone number"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
     }
 }
 
