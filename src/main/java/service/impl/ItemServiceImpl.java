@@ -1,6 +1,7 @@
 package service.impl;
 
 import com.jfoenix.controls.JFXTextField;
+import dto.CartItem;
 import dto.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,5 +66,10 @@ public class ItemServiceImpl implements ItemService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public boolean updateItemQuantity(ObservableList<CartItem> cartItemObservableList) {
+        return false;
     }
 }
