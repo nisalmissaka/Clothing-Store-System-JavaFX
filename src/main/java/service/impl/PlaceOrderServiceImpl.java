@@ -16,8 +16,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import javafx.collections.ObservableList;
-
 
 public class PlaceOrderServiceImpl implements PlaceOrderService {
 
@@ -94,6 +92,35 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
         }
 
         return null;
+    }
+    @Override
+    public void plceOrder(Order order, ObservableList<CartItem> cartItemObservableList) throws SQLException {
+
+        Connection connection = DBConnection.getInstance().getConnection();
+
+        try {
+            connection.setAutoCommit(false);
+
+            boolean isOrderSaved = PlaceOrderService.addOrder(connection,order);
+            if(isOrderSaved){
+                boolean isDetailsSaved = PlaceOrderService.updateItemQuantity(connection,order, cartItemObservableList);
+//
+                if(isDetailsSaved){
+                    boolean isUpdateItem = itemService.updateItemQuantity(cartItemObservableList);
+//
+                    if(isUpdateItem){
+                        connection.commit();
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            connection.rollback();
+            throw new RuntimeException(e);
+        }finally {
+            connection.setAutoCommit(true);
+        }
+
+
     }
 }
 
