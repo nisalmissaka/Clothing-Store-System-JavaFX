@@ -12,6 +12,6 @@ import lombok.ToString;
 public class Supplyer {
     private  String sup_id;
     private  String sup_name;
-    private  String phonenumber;
+    private  String phoneNumber;
     private String address;
 }
