@@ -144,7 +144,7 @@ public class DashboardFormController {
 
     @FXML
     void btnOnActionSupplyers(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/supplyers_form.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/supplyer_form.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Supplyers");
