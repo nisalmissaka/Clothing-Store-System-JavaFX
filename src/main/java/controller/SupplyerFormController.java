@@ -16,6 +16,9 @@ import service.impl.SupplyerServiceImpl;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+
+
 public class SupplyerFormController implements Initializable {
 
 
@@ -36,13 +39,13 @@ public class SupplyerFormController implements Initializable {
     private TableColumn<?, ?> colSupplyerEmail;
 
     @FXML
-    private TableColumn<?, ?> colSupplyerID;
+    private TableColumn<Supplyer,String> colSupplyerID;
 
     @FXML
     private TableColumn<?, ?> colSupplyerName;
 
     @FXML
-    private TableView<?> tblSupplyer;
+    private TableView<Supplyer> tblSupplyer;
 
     @FXML
     private TextField txtCompanyName;
@@ -61,6 +64,8 @@ public class SupplyerFormController implements Initializable {
 
     public TextField txtSupplyerEmail;
 
+    SupplyerService supplyerService = new SupplyerServiceImpl();
+
 
     @FXML
     void btnAddSupplyerOnAction(ActionEvent event) {
@@ -68,11 +73,19 @@ public class SupplyerFormController implements Initializable {
                 txtSupplyerID.getText(),
                 txtSupplyerName.getText(),
                 txtCompanyName.getText(),
-                txtSupplyerBrand.getText(),
                 txtContactNumber.getText(),
-                txtSupplyerEmail.getText()
+                txtSupplyerEmail.getText(),
+                txtSupplyerBrand.getText()
         );
-        SupplyerService.AddSuplier(supplyer);
+       boolean isAdded =  SupplyerService.AddSuplier(supplyer);
+
+       if (isAdded){
+           clearFields();
+       }
+
+    }
+
+    private void clearFields() {
 
     }
 
@@ -96,6 +109,13 @@ public class SupplyerFormController implements Initializable {
         colSupplyerEmail.setCellValueFactory(new PropertyValueFactory<>("supplyerEmail"));
         colSupplyerBrand.setCellValueFactory(new PropertyValueFactory<>("supplyerBrand"));
 
+        tblSupplyer.setItems(supplyerObservableList);
+        loadTable();
 
+
+    }
+
+    private void loadTable() {
+        supplyerObservableList.clear();
     }
 }
