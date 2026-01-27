@@ -21,28 +21,23 @@ import java.util.ResourceBundle;
 
 public class SupplyerFormController implements Initializable {
 
-
+    @FXML
+    private TableColumn<Supplyer,String> colCantactNumber;
 
     @FXML
-    private TextField SupplyerEmail;
+    private TableColumn<Supplyer,String> colCompanyName;
 
     @FXML
-    private TableColumn<?, ?> colCantactNumber;
+    private TableColumn<Supplyer,String> colSupplyerBrand;
 
     @FXML
-    private TableColumn<?, ?> colCompanyName;
-
-    @FXML
-    private TableColumn<?, ?> colSupplyerBrand;
-
-    @FXML
-    private TableColumn<?, ?> colSupplyerEmail;
+    private TableColumn<Supplyer,String> colSupplyerEmail;
 
     @FXML
     private TableColumn<Supplyer,String> colSupplyerID;
 
     @FXML
-    private TableColumn<?, ?> colSupplyerName;
+    private TableColumn<Supplyer,String> colSupplyerName;
 
     @FXML
     private TableView<Supplyer> tblSupplyer;
@@ -66,6 +61,7 @@ public class SupplyerFormController implements Initializable {
 
     SupplyerService supplyerService = new SupplyerServiceImpl();
 
+    ObservableList<Supplyer> supplyerObservableList = FXCollections.observableArrayList();
 
     @FXML
     void btnAddSupplyerOnAction(ActionEvent event) {
@@ -77,7 +73,7 @@ public class SupplyerFormController implements Initializable {
                 txtSupplyerEmail.getText(),
                 txtSupplyerBrand.getText()
         );
-       boolean isAdded =  SupplyerService.AddSuplier(supplyer);
+       boolean isAdded =  SupplyerService.addSuplier(supplyer);
 
        if (isAdded){
            clearFields();
@@ -86,6 +82,12 @@ public class SupplyerFormController implements Initializable {
     }
 
     private void clearFields() {
+        txtSupplyerID.clear();
+        txtSupplyerName.clear();
+        txtCompanyName.clear();
+        txtContactNumber.clear();
+        txtSupplyerEmail.clear();
+        txtSupplyerBrand.clear();
 
     }
 
@@ -96,10 +98,10 @@ public class SupplyerFormController implements Initializable {
 
     @FXML
     void btnReloadOnAction(ActionEvent event) {
+        loadTable();
 
     }
 
-    ObservableList<Supplyer>supplyerObservableList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colSupplyerID.setCellValueFactory(new PropertyValueFactory<>("supplyerID"));
@@ -117,5 +119,7 @@ public class SupplyerFormController implements Initializable {
 
     private void loadTable() {
         supplyerObservableList.clear();
+        supplyerObservableList.addAll(supplyerService.AddSupplyer());
+        tblSupplyer.setItems(supplyerObservableList);
     }
 }
