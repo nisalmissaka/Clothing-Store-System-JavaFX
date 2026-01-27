@@ -1,12 +1,15 @@
 package controller;
 
 import dto.Supplyer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import service.SupplyerService;
 import service.impl.SupplyerServiceImpl;
 
@@ -83,8 +86,16 @@ public class SupplyerFormController implements Initializable {
 
     }
 
+    ObservableList<Supplyer>supplyerObservableList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        colSupplyerID.setCellValueFactory(new PropertyValueFactory<>("supplyerID"));
+        colSupplyerName.setCellValueFactory(new PropertyValueFactory<>("supplyerName"));
+        colCompanyName.setCellValueFactory(new PropertyValueFactory<>("companyName"));
+        colCantactNumber.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
+        colSupplyerEmail.setCellValueFactory(new PropertyValueFactory<>("supplyerEmail"));
+        colSupplyerBrand.setCellValueFactory(new PropertyValueFactory<>("supplyerBrand"));
+
 
     }
 }
