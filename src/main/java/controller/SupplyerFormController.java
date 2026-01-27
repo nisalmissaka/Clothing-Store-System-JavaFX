@@ -1,12 +1,20 @@
 package controller;
 
+import dto.Supplyer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import service.SupplyerService;
+import service.impl.SupplyerServiceImpl;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class SupplyerFormController {
+
+
 
     @FXML
     private TextField SupplyerEmail;
@@ -47,8 +55,19 @@ public class SupplyerFormController {
     @FXML
     private TextField txtSupplyerName;
 
+    public TextField txtSupplyerEmail;
+
     @FXML
     void btnAddSupplyerOnAction(ActionEvent event) {
+        Supplyer supplyer = new Supplyer(
+                txtSupplyerID.getText(),
+                txtSupplyerName.getText(),
+                txtCompanyName.getText(),
+                txtSupplyerBrand.getText(),
+                txtContactNumber.getText(),
+                txtSupplyerEmail.getText()
+        );
+        SupplyerService.AddSuplier(supplyer);
 
     }
 
