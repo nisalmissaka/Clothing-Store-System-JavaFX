@@ -6,6 +6,7 @@ import repository.impl.SupplyerRepositoryImpl;
 import service.SupplyerService;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class SupplyerServiceImpl implements SupplyerService {
@@ -18,7 +19,10 @@ public class SupplyerServiceImpl implements SupplyerService {
 
     @Override
     public void AddSupplyer(Supplyer supplyer) {
-        repository.AddSupplyer(supplyer);
-
+        try {
+            repository.AddSupplyer(supplyer);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
