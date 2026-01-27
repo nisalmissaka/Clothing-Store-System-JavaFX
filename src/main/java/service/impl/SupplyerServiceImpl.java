@@ -18,6 +18,11 @@ public class SupplyerServiceImpl implements SupplyerService {
     }
 
     @Override
+    public Supplyer AddSupplyer() {
+        return null;
+    }
+
+    @Override
     public void AddSupplyer(Supplyer supplyer) {
         try {
             repository.AddSupplyer(supplyer);

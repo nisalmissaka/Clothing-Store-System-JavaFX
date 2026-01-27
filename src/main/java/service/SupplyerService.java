@@ -6,12 +6,20 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public interface SupplyerService {
-    static void AddSuplier(Supplyer supplyer) {
+    static boolean AddSuplier(Supplyer supplyer) {
 
+        return false;
+    }
+
+    static boolean addSuplier(Supplyer supplyer) {
+
+        return false;
     }
 
     void initialize(URL url, ResourceBundle resourceBundle);
 
-    void AddSupplyer(Supplyer supplyer);
 
+    Supplyer AddSupplyer();
+
+    void AddSupplyer(Supplyer supplyer);
 }
