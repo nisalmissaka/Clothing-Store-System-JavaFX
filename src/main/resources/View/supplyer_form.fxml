@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="712.0" style="-fx-background-color: #E9B3FB;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SupplyerFormController">
    <children>
       <AnchorPane prefHeight="55.0" prefWidth="712.0" style="-fx-background-color: #1055C9;">
@@ -25,7 +24,7 @@
       <TextField fx:id="txtCompanyName" layoutX="80.0" layoutY="180.0" prefHeight="26.0" prefWidth="186.0" promptText="Company Name" />
       <TextField fx:id="txtContactNumber" layoutX="396.0" layoutY="183.0" prefHeight="26.0" prefWidth="186.0" promptText="Contact Number" />
       <TextField fx:id="txtSupplyerBrand" layoutX="80.0" layoutY="244.0" prefHeight="26.0" prefWidth="186.0" promptText="Supplyer Brand" />
-      <TextField fx:id="SupplyerEmail" layoutX="391.0" layoutY="244.0" prefHeight="26.0" prefWidth="186.0" promptText="Supplyer Email" />
+      <TextField fx:id="txtSupplyerEmail" layoutX="391.0" layoutY="244.0" prefHeight="26.0" prefWidth="186.0" promptText="Supplyer Email" />
       <Button layoutX="422.0" layoutY="306.0" mnemonicParsing="false" onAction="#btnAddSupplyerOnAction" prefHeight="26.0" prefWidth="131.0" style="-fx-background-color: #0D4715;" text="Add Supplyer" textFill="#fcf7f7">
          <font>
             <Font name="System Bold Italic" size="12.0" />
