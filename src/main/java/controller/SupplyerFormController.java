@@ -57,6 +57,7 @@ public class SupplyerFormController {
 
     public TextField txtSupplyerEmail;
 
+
     @FXML
     void btnAddSupplyerOnAction(ActionEvent event) {
         Supplyer supplyer = new Supplyer(
