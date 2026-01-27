@@ -14,7 +14,7 @@ public class Supplyer {
     private String supplyerName;
     private String companyName;
     private String contactNumber;
-    private String supplyerEmail;
     private String supplyerBrand;
+    private String supplyerEmail;
 
 }
