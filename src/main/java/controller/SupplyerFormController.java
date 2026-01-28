@@ -26,22 +26,22 @@ import java.util.ResourceBundle;
 public class SupplyerFormController implements Initializable {
 
     @FXML
-    private TableColumn<Supplyer,String> colCantactNumber;
+    private TableColumn<Supplyer, String> colCantactNumber;
 
     @FXML
-    private TableColumn<Supplyer,String> colCompanyName;
+    private TableColumn<Supplyer, String> colCompanyName;
 
     @FXML
-    private TableColumn<Supplyer,String> colSupplyerBrand;
+    private TableColumn<Supplyer, String> colSupplyerBrand;
 
     @FXML
-    private TableColumn<Supplyer,String> colSupplyerEmail;
+    private TableColumn<Supplyer, String> colSupplyerEmail;
 
     @FXML
-    private TableColumn<Supplyer,String> colSupplyerID;
+    private TableColumn<Supplyer, String> colSupplyerID;
 
     @FXML
-    private TableColumn<Supplyer,String> colSupplyerName;
+    private TableColumn<Supplyer, String> colSupplyerName;
 
     @FXML
     private TableView<Supplyer> tblSupplyer;
@@ -77,11 +77,11 @@ public class SupplyerFormController implements Initializable {
                 txtSupplyerEmail.getText(),
                 txtSupplyerBrand.getText()
         );
-       boolean isAdded =  SupplyerService.addSuplier(supplyer);
+        boolean isAdded = SupplyerService.addSuplier(supplyer);
 
-       if (isAdded){
-           clearFields();
-       }
+        if (isAdded) {
+            clearFields();
+        }
 
     }
 
@@ -101,7 +101,7 @@ public class SupplyerFormController implements Initializable {
     }
 
     @FXML
-    void btnReloadOnAction(ActionEvent event) {
+    void btnReloadOnAction(ActionEvent event) throws SQLException {
         loadTable();
 
     }
@@ -116,20 +116,19 @@ public class SupplyerFormController implements Initializable {
         colSupplyerBrand.setCellValueFactory(new PropertyValueFactory<>("supplyerBrand"));
 
         tblSupplyer.setItems(supplyerObservableList);
-        loadTable();
-
-
+        try {
+            loadTable();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     SupplyerRepository repository = new SupplyerRepositoryImpl();
 
-    private void loadTable() {
-        try {
-            List<Supplyer> list = repository.getAllSuppliers();
-            ObservableList<Supplyer> supplyerObservableList = FXCollections.observableArrayList();
-            tblSupplyer.setItems(supplyerObservableList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    private void loadTable() throws SQLException {
+        List<Supplyer> list = repository.getAllSuppliers();
+        ObservableList<Supplyer> supplyerObservableList =
+                FXCollections.observableArrayList(list);
+        tblSupplyer.setItems(supplyerObservableList);
     }
 }
