@@ -10,10 +10,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import repository.SupplyerRepository;
+import repository.impl.SupplyerRepositoryImpl;
 import service.SupplyerService;
 import service.impl.SupplyerServiceImpl;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -117,9 +121,15 @@ public class SupplyerFormController implements Initializable {
 
     }
 
+    SupplyerRepository repository = new SupplyerRepositoryImpl();
+
     private void loadTable() {
-        supplyerObservableList.clear();
-        supplyerObservableList.addAll(supplyerService.AddSupplyer());
-        tblSupplyer.setItems(supplyerObservableList);
+        try {
+            List<Supplyer> list = repository.getAllSuppliers();
+            ObservableList<Supplyer> supplyerObservableList = FXCollections.observableArrayList();
+            tblSupplyer.setItems(supplyerObservableList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
