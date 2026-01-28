@@ -9,5 +9,5 @@ public interface SupplyerRepository {
     void AddSupplyer(Supplyer supplyer) throws SQLException;
     List<Supplyer> getAllSupplyers() throws SQLException;
 
-    List<Supplyer> getAllSuppliers();
+    List<Supplyer> getAllSuppliers() throws SQLException;
 }
