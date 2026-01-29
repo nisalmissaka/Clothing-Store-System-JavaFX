@@ -20,13 +20,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
-
-
 public class SupplyerFormController implements Initializable {
 
     @FXML
-    private TableColumn<Supplyer, String> colCantactNumber;
+    private TableColumn<Supplyer, String> colContactNumber;
 
     @FXML
     private TableColumn<Supplyer, String> colCompanyName;
@@ -68,21 +65,22 @@ public class SupplyerFormController implements Initializable {
     ObservableList<Supplyer> supplyerObservableList = FXCollections.observableArrayList();
 
     @FXML
-    void btnAddSupplyerOnAction(ActionEvent event) {
+    void btnAddSupplyerOnAction(ActionEvent event) throws SQLException {
         Supplyer supplyer = new Supplyer(
                 txtSupplyerID.getText(),
                 txtSupplyerName.getText(),
                 txtCompanyName.getText(),
                 txtContactNumber.getText(),
-                txtSupplyerEmail.getText(),
-                txtSupplyerBrand.getText()
+                txtSupplyerBrand.getText(),
+                txtSupplyerEmail.getText()
         );
-        boolean isAdded = SupplyerService.addSuplier(supplyer);
-
-        if (isAdded) {
+        try {
+             supplyerService.AddSupplyer(supplyer);
             clearFields();
+            loadTable();
+        } catch (SQLException e){
+            e.printStackTrace();
         }
-
     }
 
     private void clearFields() {
@@ -111,7 +109,7 @@ public class SupplyerFormController implements Initializable {
         colSupplyerID.setCellValueFactory(new PropertyValueFactory<>("supplyerID"));
         colSupplyerName.setCellValueFactory(new PropertyValueFactory<>("supplyerName"));
         colCompanyName.setCellValueFactory(new PropertyValueFactory<>("companyName"));
-        colCantactNumber.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
+        colContactNumber.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
         colSupplyerEmail.setCellValueFactory(new PropertyValueFactory<>("supplyerEmail"));
         colSupplyerBrand.setCellValueFactory(new PropertyValueFactory<>("supplyerBrand"));
 

@@ -40,7 +40,7 @@
           <TableColumn fx:id="colSupplyerID" prefWidth="75.0" text="Supplyer ID" />
           <TableColumn fx:id="colSupplyerName" prefWidth="113.60003662109375" text="Supplyer Name" />
             <TableColumn fx:id="colCompanyName" prefWidth="153.5999755859375" text="Company Name" />
-            <TableColumn fx:id="colCantactNumber" prefWidth="132.79998779296875" text="Contact Number" />
+            <TableColumn fx:id="colContactNumber" prefWidth="132.79998779296875" text="Contact Number" />
             <TableColumn fx:id="colSupplyerBrand" prefWidth="118.4000244140625" text="Supplyer Brand" />
             <TableColumn fx:id="colSupplyerEmail" prefWidth="116.0" text="Supplyer Email" />
         </columns>

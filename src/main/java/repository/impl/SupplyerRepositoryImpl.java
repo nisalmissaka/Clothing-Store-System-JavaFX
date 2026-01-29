@@ -32,11 +32,6 @@ public class SupplyerRepositoryImpl implements SupplyerRepository {
     }
 
     @Override
-    public List<Supplyer> getAllSupplyers() throws SQLException {
-        return List.of();
-    }
-
-    @Override
     public List<Supplyer> getAllSuppliers() throws SQLException {
         List<Supplyer> supplierList = new ArrayList<>();
         String sql = "SELECT * FROM suppliers";
