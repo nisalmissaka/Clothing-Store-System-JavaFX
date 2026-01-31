@@ -16,6 +16,7 @@ import service.impl.CustomerServiceImpl;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -136,21 +137,29 @@ public class CustomerFormController implements Initializable {
 
     }
 
-    public Customer searchCustomer(String newValue)  {
+    public Customer searchCustomer(String customerId) {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
-           ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM customer WHERE CustID = ");
-            resultSet.next();
-            return new Customer(
-                    resultSet.getString(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3),
-                    resultSet.getDouble(4),
-                    resultSet.getString(5)
-                    );
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM customer WHERE CustID = ?"
+            );
+            preparedStatement.setString(1, customerId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return new Customer(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getDouble(4),
+                        resultSet.getString(5)
+                );
+            }
+            return null; // Customer not found
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
+
 }
+

@@ -6,62 +6,42 @@ import dto.Customer;
 import dto.Item;
 import dto.Order;
 import javafx.collections.ObservableList;
-import service.CustomerService;
 import service.ItemService;
+import service.OrderService;
 import service.PlaceOrderService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-
 
 public class PlaceOrderServiceImpl implements PlaceOrderService {
 
     ItemService itemService = new ItemServiceImpl();
-    CustomerService customerService = new CustomerServiceImpl();
-
-
-    @Override
-    public boolean placeOrder(Order order, List<CartItem> cartItems) throws SQLException {
-        return false;
-    }
-
-    @Override
-    public boolean placeOrder(Order order, ObservableList<CartItem> cartItemObservableList) throws SQLException {
-
-        Connection connection = DBConnection.getInstance().getConnection();
-        System.out.println("Order Placed");
-        System.out.println(order);
-
-        for (CartItem item : cartItemObservableList) {
-            System.out.println(item);
-        }
-        return true;
-    }
+    CustomerServiceImpl customerService = new CustomerServiceImpl();
+    OrderService orderService = new OrderServiceImpl();
 
     @Override
     public Item searchItem(String txtItemCode) {
-        String sql = "SELECT Description,ItemPrice,Discount,Quantity FROM item WHERE ItemCode=?";
+        String sql = "SELECT ItemCode, Description, ItemSize, ItemPrice, Discount, Quantity FROM item WHERE ItemCode=?";
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,txtItemCode.trim());
+            preparedStatement.setString(1, txtItemCode.trim());
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
                 return new Item(
-                        txtItemCode,
+                        resultSet.getString("ItemCode"),
                         resultSet.getString("Description"),
+                        resultSet.getString("ItemSize"),
                         resultSet.getDouble("ItemPrice"),
                         resultSet.getDouble("Discount"),
                         resultSet.getInt("Quantity")
                 );
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -70,57 +50,46 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 
     @Override
     public Customer searchCustomer(String customerId) {
-        String sql = "SELECT CustomerName, Salary FROM customer WHERE CustID=?";
-
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, customerId);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                return new Customer(
-                        customerId,
-                        resultSet.getString("CustomerName"),
-                        resultSet.getDouble("Salary")
-                );
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        return customerService.searchCustomer(customerId);
     }
-    @Override
-    public void plceOrder(Order order, ObservableList<CartItem> cartItemObservableList) throws SQLException {
 
+    @Override
+    public boolean addOrder(Connection connection, Order order) {
+        return orderService.addOrder(connection, order);
+    }
+
+    @Override
+    public boolean updateItemQuantity(Connection connection, Order order, ObservableList<CartItem> cartItems) {
+        return itemService.updateItemQuantity(connection, order, cartItems);
+    }
+
+    @Override
+    public boolean placeOrder(Order order, ObservableList<CartItem> cartItemObservableList) throws SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
 
         try {
             connection.setAutoCommit(false);
 
-            boolean isOrderSaved = PlaceOrderService.addOrder(connection,order);
-            if(isOrderSaved){
-                boolean isDetailsSaved = PlaceOrderService.updateItemQuantity(connection,order, cartItemObservableList);
-//
-                if(isDetailsSaved){
-                    boolean isUpdateItem = itemService.updateItemQuantity(cartItemObservableList);
-//
-                    if(isUpdateItem){
-                        connection.commit();
-                    }
-                }
+            boolean isOrderSaved = addOrder(connection, order);
+            if (!isOrderSaved) {
+                connection.rollback();
+                return false;
             }
+
+            boolean isDetailsSaved = updateItemQuantity(connection, order, cartItemObservableList);
+            if (!isDetailsSaved) {
+                connection.rollback();
+                return false;
+            }
+
+            connection.commit();
+            return true;
+
         } catch (SQLException e) {
             connection.rollback();
-            throw new RuntimeException(e);
-        }finally {
+            throw e;
+        } finally {
             connection.setAutoCommit(true);
         }
-
-
     }
 }
-

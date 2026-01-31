@@ -5,17 +5,25 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    private static  DBConnection instance;
+    private static DBConnection instance;
     private Connection connection;
 
-    private DBConnection() throws SQLException{
-        connection= DriverManager.getConnection("jdbc:mysql://localhost:3306/clothing_store_db","root","nisal");
+    private DBConnection() throws SQLException {
+        connection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/clothing_store_db",
+                "root",
+                "nisal"
+        );
     }
-    public  static DBConnection getInstance()throws SQLException{
-        return null==instance?instance=new DBConnection():instance;
-    }
-    public Connection getConnection(){
 
+    public static DBConnection getInstance() throws SQLException {
+        if (instance == null) {
+            instance = new DBConnection();
+        }
+        return instance;
+    }
+
+    public Connection getConnection() {
         return connection;
     }
 }

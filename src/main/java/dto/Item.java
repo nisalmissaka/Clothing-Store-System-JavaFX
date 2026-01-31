@@ -18,12 +18,5 @@ public class Item {
     private double discount;
     private int quantity;
 
-    public Item(String itemCode, String description, double itemPrice, double discount,int quantity) {
-        this.itemCode = itemCode;
-        this.description = description;
-        this.itemPrice = itemPrice;
-        this.discount = discount;
-        this.quantity = quantity;
-    }
 }
 

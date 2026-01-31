@@ -16,10 +16,4 @@ public class Customer {
     private Double Salary;
     private String City;
 
-    public Customer(String customerID, String customerName, Double salary) {
-        this.customerID = customerID;
-        this.customerName = customerName;
-        this.Salary = salary;
-    }
-
 }

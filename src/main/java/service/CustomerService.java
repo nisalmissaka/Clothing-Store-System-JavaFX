@@ -1,22 +1,15 @@
 package service;
 
 import dto.Customer;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public interface CustomerService {
-
-
-     void AddCustomer(Customer customer) ;
-
-     void DeleteCustomer(Customer customer) throws SQLException;
-
-
+    void AddCustomer(Customer customer);
+    void DeleteCustomer(Customer customer) throws SQLException;
     boolean DeleteCustomer(String id);
-
-    List<Customer> getAllCustomer( ) throws SQLException;
-
+    ObservableList<Customer> getAllCustomer() throws SQLException;
     Customer getCustomer(String customerId);
-
+    Customer searchCustomer(String customerId);
 }

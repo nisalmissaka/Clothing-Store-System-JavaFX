@@ -8,93 +8,81 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #FCC61D;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardFormController">
+<AnchorPane prefHeight="642.0" prefWidth="899.0" style="-fx-background-color: #2C3A47;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardFormController">
    <children>
-      <!-- Correct ImageView -->
-      <ImageView fitHeight="864.0" fitWidth="700.0" layoutX="250.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@/images/burgess-milner-OYYE4g-I5ZQ-unsplash.jpg" />
-         </image>
-      </ImageView>
 
-      <Label fx:id="lblFLORENCE" layoutX="60.0" layoutY="46.0" text="FLORENCE" textFill="WHITE">
+      <Label fx:id="lblFLORENCE" layoutX="83.0" layoutY="20.0" prefHeight="94.0" prefWidth="366.0" text="FLORENCE" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="48.0" />
+            <Font name="System Bold Italic" size="62.0" />
          </font>
       </Label>
 
-      <Label fx:id="lblGreeting" layoutX="350.0" layoutY="132.0" text="Good Morning" textFill="#fffbfb">
+      <Label fx:id="lblGreeting" layoutX="639.0" layoutY="113.0" text="Good Morning" textFill="#fffbfb">
          <font>
             <Font name="System Bold Italic" size="28.0" />
          </font>
       </Label>
 
-      <Label fx:id="lblDate" layoutX="403.0" layoutY="25.0" text="25.11.2025" textFill="#fffefe">
+      <Label fx:id="lblDate" layoutX="484.0" layoutY="36.0" text="25.11.2025" textFill="#fffefe">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+
+      <Label fx:id="lbltime" layoutX="476.0" layoutY="79.0" text="12.00.00 PM" textFill="#fffefe">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+
+      <Label fx:id="lblAdmin" layoutX="771.0" layoutY="10.0" text="Admin" textFill="#fffefe">
          <font>
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
 
-      <Label fx:id="lbltime" layoutX="401.0" layoutY="68.0" text="12.00.00 PM" textFill="#fffefe">
+      <Circle fill="#f1f4f7" layoutX="736.0" layoutY="32.0" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+
+      <Label fx:id="lblNisalMissaka" layoutX="682.0" layoutY="46.0" prefHeight="43.0" prefWidth="187.0" text="Nisal Missaka" textFill="#fffefe">
          <font>
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
 
-      <Label fx:id="lblAdmin" layoutX="604.0" layoutY="25.0" text="Admin" textFill="#fffefe">
-         <font>
-            <Font name="System Bold" size="29.0" />
-         </font>
-      </Label>
-
-      <Circle fill="#f1f4f7" layoutX="638.0" layoutY="104.0" radius="34.0" stroke="BLACK" strokeType="INSIDE" />
-
-      <Label fx:id="lblNisalMissaka" layoutX="677.0" layoutY="89.0" prefHeight="43.0" prefWidth="187.0" text="Nisal Missaka" textFill="#fffefe">
-         <font>
-            <Font name="System Bold" size="29.0" />
-         </font>
-      </Label>
-
-      <Label fx:id="lblDashboard" layoutX="40.0" layoutY="159.0" text="Dashboard" textFill="#fcf9f9">
-         <font>
-            <Font name="System Bold Italic" size="29.0" />
-         </font>
-      </Label>
-
-      <Button layoutX="47.0" layoutY="238.0" mnemonicParsing="false" onAction="#btnOnActionItemManage" prefHeight="58.0" prefWidth="150.0" style="-fx-background-color: #9B5DE0;" text="Item Manage" textFill="WHITE">
+      <Button layoutX="32.0" layoutY="171.0" mnemonicParsing="false" onAction="#btnOnActionItemManage" prefHeight="58.0" prefWidth="187.0" style="-fx-background-color: #9B5DE0;" text="Item Manage" textFill="WHITE">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Button>
-
-      <Button layoutX="47.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnOnActionPOS" prefHeight="58.0" prefWidth="150.0" style="-fx-background-color: #F875AA;" text="POS" textFill="WHITE">
+      <Button layoutX="32.0" layoutY="250.0" mnemonicParsing="false" onAction="#btnOnActionPOS" prefHeight="58.0" prefWidth="187.0" style="-fx-background-color: #e84393;" text="POS" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="28.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Button>
-
-      <Button layoutX="44.0" layoutY="637.0" mnemonicParsing="false" onAction="#btnOnActionSalesReport" prefHeight="59.0" prefWidth="161.0" style="-fx-background-color: #78C841;" text="Sales Report" textFill="WHITE">
+      <Button layoutX="32.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnOnActionCustomers" prefHeight="58.0" prefWidth="187.0" style="-fx-background-color: #27ae60;" text="Customers" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="21.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Button>
-
-      <Button layoutX="46.0" layoutY="434.0" mnemonicParsing="false" onAction="#btnOnActionCustomers" prefHeight="59.0" prefWidth="150.0" style="-fx-background-color: #754E1A;" text="Customers" textFill="WHITE">
+      <Button layoutX="32.0" layoutY="407.0" mnemonicParsing="false" onAction="#btnOnActionSupplyers" prefHeight="58.0" prefWidth="187.0" style="-fx-background-color: #cd6133;" text="Supplyers" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="21.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Button>
-
-      <Button layoutX="46.0" layoutY="537.0" mnemonicParsing="false" onAction="#btnOnActionSupplyers" prefHeight="59.0" prefWidth="150.0" style="-fx-background-color: #C62E2E;" text="Supplyers" textFill="WHITE">
+      <Button layoutX="32.0" layoutY="487.0" mnemonicParsing="false" onAction="#btnOnActionSelesReport" prefHeight="58.0" prefWidth="187.0" style="-fx-background-color: #EA2027;" text="Sales Report" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="21.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Button>
-
-      <Button layoutX="47.0" layoutY="730.0" mnemonicParsing="false" onAction="#btnOnActionSetting" prefHeight="59.0" prefWidth="150.0" style="-fx-background-color: #5C5470;" text="Setting" textFill="WHITE">
+      <Button layoutX="32.0" layoutY="566.0" mnemonicParsing="false" onAction="#btnOnActionSetting" prefHeight="58.0" prefWidth="187.0" style="-fx-background-color: #3742fa;" text="Setting" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="21.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Button>
+      <ImageView fitHeight="447.0" fitWidth="660.0" layoutX="228.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/burgess-milner-OYYE4g-I5ZQ-unsplash.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
