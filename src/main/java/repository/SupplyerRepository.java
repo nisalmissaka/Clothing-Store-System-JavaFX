@@ -9,4 +9,7 @@ public interface SupplyerRepository {
       void AddSupplyer(Supplyer supplyer) throws SQLException;
 
     List<Supplyer> getAllSuppliers() throws SQLException;
+
+    boolean deleteSupplier(String supplyerID) throws SQLException;
+
 }

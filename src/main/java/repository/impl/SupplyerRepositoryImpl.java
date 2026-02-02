@@ -53,4 +53,14 @@ public class SupplyerRepositoryImpl implements SupplyerRepository {
         }
         return supplierList;
     }
+    @Override
+    public boolean deleteSupplier(String supplierID) throws SQLException{
+        String sql = "DELETE FROM suppliers WHERE Supplier_ID =?";
+
+        try (Connection connection = getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, supplierID);
+            return preparedStatement.executeUpdate() > 0;
+        }
+    }
 }

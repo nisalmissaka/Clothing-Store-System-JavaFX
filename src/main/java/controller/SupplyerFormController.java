@@ -96,6 +96,12 @@ public class SupplyerFormController implements Initializable {
         String supplyerID = txtSupplyerID.getText();
         try {
             boolean isDeleted = supplyerService.deleteSupplyer(supplyerID);
+            if(isDeleted){
+                clearFields();
+                loadTable();
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
         }
 
 }

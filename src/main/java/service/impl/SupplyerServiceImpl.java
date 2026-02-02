@@ -22,7 +22,11 @@ public class SupplyerServiceImpl implements SupplyerService {
     }
 
     @Override
-    public void DeleteSupplyer(Supplyer supplyer) {
-
+    public boolean deleteSupplyer(String supplyerID) {
+        try {
+            return repository.deleteSupplier(supplyerID);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
