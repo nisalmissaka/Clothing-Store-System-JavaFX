@@ -9,4 +9,7 @@ public interface SupplyerService {
 
 
     void AddSupplyer(Supplyer supplyer);
+
+
+    boolean deleteSupplyer(String supplyerID);
 }

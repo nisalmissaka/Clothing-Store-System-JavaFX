@@ -6,9 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import repository.SupplyerRepository;
 import repository.impl.SupplyerRepositoryImpl;
@@ -75,7 +73,7 @@ public class SupplyerFormController implements Initializable {
                 txtSupplyerEmail.getText()
         );
         try {
-             supplyerService.AddSupplyer(supplyer);
+            supplyerService.AddSupplyer(supplyer);
             clearFields();
             loadTable();
         } catch (SQLException e){
@@ -95,8 +93,12 @@ public class SupplyerFormController implements Initializable {
 
     @FXML
     void btnDeleteSupplyerOnAction(ActionEvent event) {
+        String supplyerID = txtSupplyerID.getText();
+        try {
+            boolean isDeleted = supplyerService.deleteSupplyer(supplyerID);
+        }
 
-    }
+}
 
     @FXML
     void btnReloadOnAction(ActionEvent event) throws SQLException {

@@ -20,4 +20,9 @@ public class SupplyerServiceImpl implements SupplyerService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void DeleteSupplyer(Supplyer supplyer) {
+
+    }
 }
