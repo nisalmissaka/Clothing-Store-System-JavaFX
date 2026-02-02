@@ -75,7 +75,7 @@ public class CustomerFormController implements Initializable {
                 Double.parseDouble(txtSalary.getText()),
                 txtCity.getText()
         );
-         customerService.AddCustomer(customer);
+        customerService.AddCustomer(customer);
 
     }
 
@@ -155,7 +155,7 @@ public class CustomerFormController implements Initializable {
                         resultSet.getString(5)
                 );
             }
-            return null; // Customer not found
+            return null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
