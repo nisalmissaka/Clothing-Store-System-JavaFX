@@ -11,16 +11,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean addOrder(Connection connection, Order order) {
-        String sql = "INSERT INTO orders (itemCode, description, quantity, unitPrice, discount, total) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO orders (order_id, seller_id, total_amount, status, order_date) VALUES (?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, order.getItemCode());
             ps.setString(2, order.getDescription());
-            ps.setInt(3, order.getQuantity());
+            ps.setDouble(3, order.getQuantity());
             ps.setDouble(4, order.getUnitPrice());
             ps.setDouble(5, order.getDiscount());
-            ps.setDouble(6, order.getTotal());
+            ps.setDouble(6,order.getTotal());
 
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
