@@ -16,6 +16,9 @@ import service.impl.PlaceOrderServiceImpl;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class PlaceOrderFormController implements Initializable {
@@ -41,7 +44,11 @@ public class PlaceOrderFormController implements Initializable {
     @FXML
     public TextField txtCustomerID;
     @FXML
+    private TextField txtOrderID;
+    @FXML
     private TextField txtQuantity;
+    @FXML
+    private TextField txtSellerID;
     @FXML
     private TextField txtItemCode;
     @FXML
@@ -83,7 +90,6 @@ public class PlaceOrderFormController implements Initializable {
                 Double.parseDouble(lblDiscount.getText()),
                 total
         );
-
         cartItemsObservableList.add(cartItem);
         tblAddToCart.setItems(cartItemsObservableList);
 
@@ -91,8 +97,6 @@ public class PlaceOrderFormController implements Initializable {
         calculateNetTotal();
 
     }
-
-    // ================= CALCULATE TOTAL =================
     private double calculateTotal(String unitPriceText, String qtyText, String discountText) {
         double unitPrice = Double.parseDouble(unitPriceText);
         int qty = Integer.parseInt(qtyText);
@@ -136,32 +140,39 @@ public class PlaceOrderFormController implements Initializable {
         }
 
     }
-
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
         try {
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String currentDateTime = LocalDateTime.now().format(dtf);
+
+
             Order order = new Order(
-                    txtItemCode.getText(),
-                    lblDescription.getText(),
-                    Integer.parseInt(txtQuantity.getText()),
-                    Double.parseDouble(lblUnitPrice.getText()),
-                    Double.parseDouble(lblDiscount.getText()),
-                    Double.parseDouble(lblNetTotal.getText())
+                    txtOrderID.getText(),
+                    txtSellerID.getText(),
+                    Double.parseDouble(lblTotal.getText()),
+                    "Pending",
+                    currentDateTime
             );
+
 
             boolean isPlaced = placeOrderService.placeOrder(order, cartItemsObservableList);
 
             if (isPlaced) {
                 new Alert(Alert.AlertType.INFORMATION, "Order Placed Successfully").show();
                 cartItemsObservableList.clear();
-                lblNetTotal.setText("0.0");
+                lblTotal.setText("0.0");
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Order Placement Failed!").show();
             }
 
-        } catch (SQLException | NumberFormatException e) {
-            new Alert(Alert.AlertType.ERROR, "Invalid Data").show();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Database Error: " + e.getMessage()).show();
+        } catch (NumberFormatException e) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Amount Format!").show();
         }
-
-
     }
 
     public void txtItemCodeOnAction(ActionEvent event) {

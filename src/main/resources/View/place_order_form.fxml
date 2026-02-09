@@ -39,27 +39,27 @@
             <Font name="System Bold Italic" size="26.0" />
          </font>
       </Label>
-      <Line endX="100.0" layoutX="826.0" layoutY="187.0" startX="-100.0" />
-      <Line endX="100.0" layoutX="831.0" layoutY="285.0" startX="-117.20001220703125" startY="1.52587890625E-5" />
-      <Label fx:id="lblCustomerName" layoutX="722.0" layoutY="243.0" text="Customer Name">
+      <Line endX="100.0" layoutX="826.0" layoutY="217.0" startX="-100.0" />
+      <Line endX="100.0" layoutX="831.0" layoutY="313.0" startX="-117.20001220703125" startY="1.52587890625E-5" />
+      <Label fx:id="lblCustomerName" layoutX="722.0" layoutY="267.0" text="Customer Name">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font></Label>
-      <Label fx:id="lblsalary" layoutX="853.0" layoutY="240.0" text="salary">
+      <Label fx:id="lblsalary" layoutX="853.0" layoutY="263.0" text="salary">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font></Label>
-      <Line endX="100.0" layoutX="820.0" layoutY="226.0" startX="-100.0" />
+      <Line endX="100.0" layoutX="820.0" layoutY="257.0" startX="-100.0" />
       <Label fx:id="lblItemCode" layoutX="752.0" layoutY="309.0" prefHeight="27.0" prefWidth="74.0">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font></Label>
-      <Line endX="100.0" layoutX="831.0" layoutY="400.0" startX="-117.20001220703125" startY="1.52587890625E-5" />
-      <Label fx:id="lblDescription" layoutX="746.0" layoutY="348.0" text="Description">
+      <Line endX="100.0" layoutX="831.0" layoutY="418.0" startX="-117.20001220703125" startY="1.52587890625E-5" />
+      <Label fx:id="lblDescription" layoutX="746.0" layoutY="369.0" text="Description">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font></Label>
-      <Button layoutX="767.0" layoutY="586.0" mnemonicParsing="false" onAction="#btnAddToCartOnAction" prefHeight="45.0" prefWidth="111.0" style="-fx-background-color: #08CB00;" text="ADD TO CART">
+      <Button layoutX="767.0" layoutY="597.0" mnemonicParsing="false" onAction="#btnAddToCartOnAction" prefHeight="45.0" prefWidth="111.0" style="-fx-background-color: #08CB00;" text="ADD TO CART">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -80,11 +80,11 @@
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <Label fx:id="lblUnitPrice" layoutX="750.0" layoutY="462.0" text="Item Price">
+      <Label fx:id="lblUnitPrice" layoutX="750.0" layoutY="478.0" text="Item Price">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font></Label>
-      <Label fx:id="lblDiscount" layoutX="750.0" layoutY="504.0" text="Discount">
+      <Label fx:id="lblDiscount" layoutX="750.0" layoutY="516.0" text="Discount">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font></Label>
@@ -115,13 +115,13 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Button>
-      <Label fx:id="lblTotal" layoutX="752.0" layoutY="546.0" text="Total">
+      <Label fx:id="lblTotal" layoutX="752.0" layoutY="553.0" text="Total">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtCustomerID" layoutX="732.0" layoutY="195.0" onAction="#txtCustomerIDOnAction" prefHeight="27.0" prefWidth="150.0" promptText="Customer ID" />
-      <TextField fx:id="txtItemCode" layoutX="732.0" layoutY="309.0" onAction="#txtItemCodeOnAction" prefHeight="27.0" prefWidth="150.0" promptText="ITM001" />
+      <TextField fx:id="txtCustomerID" layoutX="732.0" layoutY="220.0" onAction="#txtCustomerIDOnAction" prefHeight="27.0" prefWidth="150.0" promptText="Customer ID" />
+      <TextField fx:id="txtItemCode" layoutX="732.0" layoutY="328.0" onAction="#txtItemCodeOnAction" prefHeight="27.0" prefWidth="150.0" promptText="ITM001" />
       <Label fx:id="lblNetTotal" layoutX="852.0" layoutY="674.0" prefHeight="20.0" prefWidth="74.0" text="0.0" textFill="#c41515">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -133,6 +133,7 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtQuantity" layoutX="731.0" layoutY="421.0" onAction="#txtQuantityOnAction" prefHeight="27.0" prefWidth="150.0" promptText="Quantity" />
+      <TextField fx:id="txtQuantity" layoutX="731.0" layoutY="436.0" onAction="#txtQuantityOnAction" prefHeight="27.0" prefWidth="150.0" promptText="Quantity" />
+      <TextField fx:id="txtSellerID" layoutX="732.0" layoutY="184.0" prefHeight="27.0" prefWidth="150.0" promptText="Seller ID" />
    </children>
 </AnchorPane>
