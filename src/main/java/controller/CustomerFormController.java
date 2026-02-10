@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -22,32 +23,25 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
 public class CustomerFormController implements Initializable {
 
+    @FXML
+    private TableView<Customer> tblCustomer;
 
     @FXML
-    public TableView<Customer> tblCustomer;
-    public ObservableList<String> getCustomerIds;
-
+    private TableColumn<Customer, String> colAddress;
 
     @FXML
-    private TableColumn<?, ?> colAddress;
+    private TableColumn<Customer, String> colCity;
 
     @FXML
-    private TableColumn<?, ?> colCity;
+    private TableColumn<Customer, String> colCustomerID;
 
     @FXML
-    private TableColumn<?, ?> colCustomerID;
+    private TableColumn<Customer, String> colCustomerName;
 
     @FXML
-    private TableColumn<?, ?> colCustomerName;
-
-    @FXML
-    private TableColumn<?, ?> colSalary;
-
-    @FXML
-    private TableView<?> tclCustomer;
+    private TableColumn<Customer, Double> colSalary;
 
     @FXML
     private TextField txtAddress;
@@ -63,94 +57,139 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     private TextField txtSalary;
-    CustomerService customerService=new CustomerServiceImpl();
+
+    private CustomerService customerService = new CustomerServiceImpl();
+    private ObservableList<Customer> customerList = FXCollections.observableArrayList();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        colCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
+        colCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+
+        tblCustomer.setItems(customerList);
+        loadTable();
+
+        tblCustomer.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                txtCustomerID.setText(newSelection.getCustomerID());
+                txtCustomerName.setText(newSelection.getCustomerName());
+                txtAddress.setText(newSelection.getAddress());
+                txtSalary.setText(String.valueOf(newSelection.getSalary()));
+                txtCity.setText(newSelection.getCity());
+            }
+        });
+    }
+
+    private void loadTable() {
+        customerList.clear();
+        try {
+            List<Customer> allCustomers = customerService.getAllCustomer();
+            if (allCustomers != null) {
+                customerList.addAll(allCustomers);
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Error loading data: " + e.getMessage()).show();
+        }
+    }
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
-
-        Customer customer = new Customer(
-                txtCustomerID.getText(),
-                txtCustomerName.getText(),
-                txtAddress.getText(),
-                Double.parseDouble(txtSalary.getText()),
-                txtCity.getText()
-        );
-        customerService.AddCustomer(customer);
-
-    }
-
-
-    @FXML
-    void btnDeleteOnAction(ActionEvent event) {
-
-        String id = txtCustomerID.getText();
-        boolean isDeleted = customerService.DeleteCustomer(id);
-
-        if(isDeleted) {
-            System.out.println("Customer Delete Successfully");
-        } else {
-            System.out.println("Customer Not Found!");
+        try {
+            Customer customer = new Customer(
+                    txtCustomerID.getText(),
+                    txtCustomerName.getText(),
+                    txtAddress.getText(),
+                    Double.parseDouble(txtSalary.getText()),
+                    txtCity.getText()
+            );
+            boolean isAdded = customerService.AddCustomer(customer);
+            if (isAdded) {
+                new Alert(Alert.AlertType.INFORMATION, "Customer Added!").show();
+                loadTable();
+                clearFields();
+            }
+        } catch (NumberFormatException e) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Salary!").show();
         }
-
-    }
-
-    @FXML
-    void btnReloadOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnSearchOnAction(ActionEvent event) {
-
     }
 
     @FXML
     void btnUpDateOnAction(ActionEvent event) {
-        Customer customer = new Customer(
-                txtCustomerID.getText(),
-                txtCustomerName.getText(),
-                txtAddress.getText(),
-                Double.parseDouble(txtSalary.getText()),
-                txtCity.getText()
-        );
-        customerService.UpdateCustomer(customer);
+        try {
+            Customer customer = new Customer(
+                    txtCustomerID.getText(),
+                    txtCustomerName.getText(),
+                    txtAddress.getText(),
+                    Double.parseDouble(txtSalary.getText()),
+                    txtCity.getText()
+            );
 
+            boolean isUpdated = customerService.UpdateCustomer(customer);
+            if (isUpdated) {
+                new Alert(Alert.AlertType.INFORMATION, "Customer Updated Successfully!").show();
+                loadTable();
+                clearFields();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Update Failed!").show();
+            }
+        } catch (NumberFormatException e) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Input!").show();
+        }
     }
 
-
-
-    ObservableList <Customer> customerList = FXCollections.observableArrayList();
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        colCustomerID.setCellValueFactory(new PropertyValueFactory<>("CustomerID"));
-        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("CustomerName"));
-        colAddress.setCellValueFactory(new PropertyValueFactory<>("Address"));
-        colSalary.setCellValueFactory(new PropertyValueFactory<>("Salary"));
-        colCity.setCellValueFactory(new PropertyValueFactory<>("City"));
-
-        tblCustomer.setItems(customerList);
-
-
-        try {
-            customerList.addAll(customerService.getAllCustomer());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    @FXML
+    void btnDeleteOnAction(ActionEvent event) {
+        String id = txtCustomerID.getText();
+        if (id.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please select a customer!").show();
+            return;
         }
 
-
+        boolean isDeleted = customerService.DeleteCustomer(id);
+        if (isDeleted) {
+            new Alert(Alert.AlertType.INFORMATION, "Deleted!").show();
+            loadTable();
+            clearFields();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Customer Not Found!").show();
+        }
     }
 
-    public static List<Customer> getAll() {
-        return null;
-
+    @FXML
+    void btnReloadOnAction(ActionEvent event) {
+        loadTable();
     }
+
+    @FXML
+    void btnSearchOnAction(ActionEvent event) {
+        Customer customer = searchCustomer(txtCustomerID.getText());
+        if (customer != null) {
+            txtCustomerName.setText(customer.getCustomerName());
+            txtAddress.setText(customer.getAddress());
+            txtSalary.setText(String.valueOf(customer.getSalary()));
+            txtCity.setText(customer.getCity());
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Customer Not Found!").show();
+        }
+    }
+
+    private void clearFields() {
+        txtCustomerID.clear();
+        txtCustomerName.clear();
+        txtAddress.clear();
+        txtSalary.clear();
+        txtCity.clear();
+    }
+
 
     public Customer searchCustomer(String customerId) {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM customer WHERE CustID = ?"
-            );
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM customer WHERE CustID = ?");
             preparedStatement.setString(1, customerId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -163,11 +202,9 @@ public class CustomerFormController implements Initializable {
                         resultSet.getString(5)
                 );
             }
-            return null;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return null;
     }
-
 }
-

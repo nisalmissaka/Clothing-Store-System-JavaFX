@@ -11,4 +11,5 @@ public interface CustomerRepository {
     void DeleteCustomer(String custID) throws SQLException;
     ResultSet searchCustomer(String customerId);
     Customer getCustomerById(String customerId) throws SQLException;
+    boolean updateCustomer(Customer customer) throws SQLException, ClassNotFoundException;
 }

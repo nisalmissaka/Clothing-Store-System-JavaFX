@@ -72,5 +72,21 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         }
         return null;
     }
-}
 
+    @Override
+    public boolean updateCustomer(Customer customer) throws SQLException {
+
+        String sql = "UPDATE customer SET CustomerName=?, Address=?, Salary=?, City=? WHERE CustID=?";
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql);
+
+        ps.setString(1, customer.getCustomerName());
+        ps.setString(2, customer.getAddress());
+        ps.setDouble(3, customer.getSalary());
+        ps.setString(4, customer.getCity());
+        ps.setString(5, customer.getCustomerID());
+
+        return ps.executeUpdate() > 0;
+    }
+}

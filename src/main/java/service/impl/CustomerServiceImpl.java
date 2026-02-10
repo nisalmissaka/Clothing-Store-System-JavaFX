@@ -15,17 +15,18 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerRepository customerRepository = new CustomerRepositoryImpl();
 
     @Override
-    public void AddCustomer(Customer customer) {
+    public boolean AddCustomer(Customer customer) {
         try {
             customerRepository.AddCustomer(customer);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return false;
     }
 
     @Override
     public void DeleteCustomer(Customer customer) throws SQLException {
-        // Implementation if needed
+
     }
 
     @Override
@@ -89,7 +90,20 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void UpdateCustomer(Customer customer) {
+    public boolean UpdateCustomer(Customer customer) {
+        if (customer.getCustomerID() == null || customer.getCustomerID().isEmpty()) {
+            return false;
+        }
 
+        if (customer.getSalary() < 0) {
+            return false;
+        }
+
+        try {
+            return customerRepository.updateCustomer(customer);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
