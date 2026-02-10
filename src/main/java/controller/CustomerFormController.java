@@ -106,6 +106,14 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void btnUpDateOnAction(ActionEvent event) {
+        Customer customer = new Customer(
+                txtCustomerID.getText(),
+                txtCustomerName.getText(),
+                txtAddress.getText(),
+                Double.parseDouble(txtSalary.getText()),
+                txtCity.getText()
+        );
+        customerService.UpdateCustomer(customer);
 
     }
 

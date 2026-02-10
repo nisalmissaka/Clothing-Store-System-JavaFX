@@ -12,4 +12,7 @@ public interface CustomerService {
     ObservableList<Customer> getAllCustomer() throws SQLException;
     Customer getCustomer(String customerId);
     Customer searchCustomer(String customerId);
+
+    void UpdateCustomer(Customer customer);
+
 }
