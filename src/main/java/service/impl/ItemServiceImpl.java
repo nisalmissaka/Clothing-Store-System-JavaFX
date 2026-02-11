@@ -109,4 +109,9 @@ public class ItemServiceImpl implements ItemService {
             return false;
         }
     }
+
+    @Override
+    public boolean UpdateItem(Item item) {
+        return false;
+    }
 }
