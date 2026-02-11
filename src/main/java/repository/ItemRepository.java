@@ -11,5 +11,7 @@ public interface ItemRepository {
     ResultSet getAllItem() throws SQLException;
     Customer getCustomer(String text);
     boolean DeleteItemCode(String itemCode) throws SQLException;
+    boolean updateItem(Item item) throws SQLException;
+
 }
 

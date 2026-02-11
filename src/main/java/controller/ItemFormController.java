@@ -113,12 +113,23 @@ public class ItemFormController implements Initializable {
         colQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         loadItemTable();
+        tblItems.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((obs,oldSelection,newSelection) -> {
+                    if (newSelection!=null){
+                        txtItemCode.setText(newSelection.getItemCode());
+                        txtDescription.setText(newSelection.getDescription());
+                        txtItemSize.setText(newSelection.getItemSize());
+                        txtItemPrice.setText(String.valueOf(newSelection.getItemPrice()));
+                        txtDiscount.setText(String.valueOf(newSelection.getDiscount()));
+                        txtQuantity.setText(String.valueOf(newSelection.getQuantity()));
+                    }
+                });
     }
-
     public void btnReloadOnAction(ActionEvent event) {
+        loadItemTable();
 
     }
-
     public void btnUpdateOnAction(ActionEvent event) {
         Item item = new Item(
                 txtItemCode.getText(),
@@ -129,6 +140,10 @@ public class ItemFormController implements Initializable {
                 Integer.parseInt(txtQuantity.getText())
         );
         boolean isUpdated = itemService.UpdateItem(item);
+        if(isUpdated){
+            new Alert(Alert.AlertType.INFORMATION,"Item Updated Successfully!").show();
+            loadItemTable();
+        }
 
     }
 

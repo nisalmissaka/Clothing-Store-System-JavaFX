@@ -62,6 +62,25 @@ public class ItemRepositoryImpl implements ItemRepository {
         return rowsAffected > 0;
     }
 
+    @Override
+    public boolean updateItem(Item item) throws SQLException {
+
+        String sql = "UPDATE item SET Description =?, Discount =?, ItemPrice =?, ItemSize=?, Quantity=? WHERE ItemCode=?";
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql);
+
+
+        ps.setString(1, item.getDescription());
+        ps.setDouble(2, item.getDiscount());
+        ps.setDouble(3, item.getItemPrice());
+        ps.setString(4, item.getItemSize());
+        ps.setInt(5, item.getQuantity());
+        ps.setString(6, item.getItemCode());
+
+        return ps.executeUpdate() > 0;
+    }
+
 }
 
 

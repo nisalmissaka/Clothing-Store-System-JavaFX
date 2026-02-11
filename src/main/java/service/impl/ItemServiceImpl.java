@@ -78,12 +78,11 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public boolean updateItemQuantity(ObservableList<CartItem> cartItemObservableList) {
-        // Implement logic to update item quantities in database
         try {
             for (CartItem cartItem : cartItemObservableList) {
-                // Update quantity in database
+
                 String sql = "UPDATE item SET Quantity = Quantity - ? WHERE ItemCode = ?";
-                // You need to implement this properly
+
             }
             return true;
         } catch (Exception e) {
@@ -95,7 +94,6 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public boolean updateItemQuantity(Connection connection, Order order, ObservableList<CartItem> cartItems) {
         try {
-            // Update item quantities in database
             for (CartItem cartItem : cartItems) {
                 String sql = "UPDATE item SET Quantity = Quantity - ? WHERE ItemCode = ?";
                 PreparedStatement ps = connection.prepareStatement(sql);
@@ -112,6 +110,18 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public boolean UpdateItem(Item item) {
-        return false;
+        if (item.getItemCode() == null || item.getItemCode().isEmpty()) {
+            return false;
+        }
+        if (item.getItemPrice() < 0) {
+            return false;
+        }
+
+        try {
+            return itemRepository.updateItem(item);
+        } catch (SQLException  e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
