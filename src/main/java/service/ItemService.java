@@ -14,4 +14,7 @@ public interface ItemService {
     boolean DeleteById(String itemCode);
     boolean updateItemQuantity(ObservableList<CartItem> cartItemObservableList);
     boolean updateItemQuantity(Connection connection, Order order, ObservableList<CartItem> cartItems);
+
+    boolean UpdateItem(Item item);
+
 }

@@ -120,6 +120,15 @@ public class ItemFormController implements Initializable {
     }
 
     public void btnUpdateOnAction(ActionEvent event) {
+        Item item = new Item(
+                txtItemCode.getText(),
+                txtDescription.getText(),
+                txtItemSize.getText(),
+                Double.parseDouble(txtItemPrice.getText()),
+                Double.parseDouble(txtDiscount.getText()),
+                Integer.parseInt(txtQuantity.getText())
+        );
+        boolean isUpdated = itemService.UpdateItem(item);
 
     }
 
