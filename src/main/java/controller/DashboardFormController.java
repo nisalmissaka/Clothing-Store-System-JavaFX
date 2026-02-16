@@ -94,8 +94,12 @@ public class DashboardFormController implements Initializable {
 
 
     @FXML
-    void btnOnActionSetting(ActionEvent event) {
-        // Settings logic goes here
+    void btnOnActionSetting(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/setting_form.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Setting");
+        stage.show();
     }
 
     @FXML
