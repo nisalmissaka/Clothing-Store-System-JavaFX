@@ -25,10 +25,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class DashboardFormController implements Initializable {
@@ -76,22 +79,26 @@ public class DashboardFormController implements Initializable {
     void btnOnActionSelesReport(ActionEvent event) {
         try {
             JasperDesign design = JRXmlLoader.load("src/main/resources/View/report/Nisal.jrxml");
-            JasperReport jasperReport = JasperCompileManager.compileReport(design);
-
+            String sql = "SELECT order_id, seller_id, total_amount, status, order_date FROM orders ORDER BY order_id ASC";
             JRDesignQuery jrDesignQuery = new JRDesignQuery();
-            jrDesignQuery.setText("SELECT Description,ItemPrice,Discount,Quantity FROM item WHERE ItemCode=?");
+            jrDesignQuery.setText(sql);
             design.setQuery(jrDesignQuery);
 
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
-            JasperExportManager.exportReportToPdfFile(jasperPrint,"sales_report.pdf");
-            JasperViewer.viewReport(jasperPrint,false);
+            JasperReport jasperReport = JasperCompileManager.compileReport(design);
+
+            Connection connection = DBConnection.getInstance().getConnection();
+            if (!connection.getAutoCommit()) {
+                connection.commit();
+            }
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
+
+            JasperViewer.viewReport(jasperPrint, false);
 
         } catch (JRException | SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-
     }
-
 
     @FXML
     void btnOnActionSetting(ActionEvent event) throws IOException {

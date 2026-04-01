@@ -18,15 +18,5 @@ public class CartItem {
     private double Discount;
     private double Total;
 
-    // Overloaded constructor without ItemSize
-    public CartItem(String itemCode, String description, int quantity,
-                    double itemPrice, double discount, double total) {
-        this.ItemCode = itemCode;
-        this.Description = description;
-        this.Quantity = quantity;
-        this.ItemPrice = itemPrice;
-        this.Discount = discount;
-        this.Total = total;
-    }
 }
 

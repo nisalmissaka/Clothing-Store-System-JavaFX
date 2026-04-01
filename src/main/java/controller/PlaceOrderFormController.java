@@ -75,27 +75,30 @@ public class PlaceOrderFormController implements Initializable {
 
     @FXML
     void btnAddToCartOnAction(ActionEvent event) {
-
+        // calculateTotal method එකෙන් එන අගය මුලින්ම Label එකට දාන්න
         double total = calculateTotal(
                 lblUnitPrice.getText(),
                 txtQuantity.getText(),
                 lblDiscount.getText()
         );
 
+        // Label එකේ Text එක අංකයක් බවට පත් කිරීම
+        lblTotal.setText(String.valueOf(total));
+
+        // දැන් CartItem එක හදන්න (එතකොට lblTotal එකේ තියෙන්නේ අංකයයි)
         CartItem cartItem = new CartItem(
                 txtItemCode.getText(),
                 lblDescription.getText(),
+                "N/A", // මම කලින් කිව්ව ItemSize එක මෙතනට දාන්න
                 Integer.parseInt(txtQuantity.getText()),
                 Double.parseDouble(lblUnitPrice.getText()),
                 Double.parseDouble(lblDiscount.getText()),
-                total
+                total // කෙලින්ම calculate කරපු total එක මෙතනට දෙන්න (parseDouble ඕන වෙන්නෙ නැහැ)
         );
+
         cartItemsObservableList.add(cartItem);
         tblAddToCart.setItems(cartItemsObservableList);
-
-        lblTotal.setText(String.valueOf(total));
         calculateNetTotal();
-
     }
     private double calculateTotal(String unitPriceText, String qtyText, String discountText) {
         double unitPrice = Double.parseDouble(unitPriceText);
