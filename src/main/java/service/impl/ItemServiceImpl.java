@@ -49,8 +49,6 @@ public class ItemServiceImpl implements ItemService {
 
         try {
             ResultSet resultSet = itemRepository.getAllItem();
-            // You need to implement proper search logic here
-            // For now, search from the cached list
             return null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
